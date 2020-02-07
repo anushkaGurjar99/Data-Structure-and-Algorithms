@@ -34,9 +34,9 @@ public:
         
         int r = node->right ? checkPath(node->right, num) : 0;
         
-        l = (node->left && node->left->val==node->val) ? l+1 : 0;
+        l = (node->left && node->left->val == node->val) ? l+1 : 0;
         
-        r = (node->right && node->right->val==node->val) ? r+1 : 0;
+        r = (node->right && node->right->val == node->val) ? r+1 : 0;
         
         num = max(num, l+r);
         
