@@ -1,6 +1,7 @@
 # Data-Structure-and-Algorithms
 
-LEETCODE solutions in here.
+LEETCODE solutions.
 
 ### Topics
+Array
 Tree
