@@ -6,6 +6,9 @@
 
 // Problem Statement: https://leetcode.com/problems/rotate-array/submissions
 
+#include<bits/stdc++.h>
+using namespace std;
+
 class Solution {
 public:
     void rotate(vector<int>& nums, int k){
