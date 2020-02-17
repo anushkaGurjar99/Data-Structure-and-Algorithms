@@ -34,6 +34,8 @@ public:
         int left = node->val + getMaxPathSum(node->left, maxSum);
         int right = node->val + getMaxPathSum(node->right, maxSum);
         
+         /* 4 cases to get maxSum 
+        node + l + r, node + l, node + r, node */
         maxSum = ((left + right - node->val) > maxSum) ? (left + right - node->val) : maxSum;
         maxSum = (left > maxSum) ? left : maxSum;
         maxSum = (right > maxSum) ? right : maxSum;
