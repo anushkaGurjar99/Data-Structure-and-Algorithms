@@ -1,5 +1,5 @@
 /*
- * Author : Anuska Gurjar
+ * Author : Anushka Gurjar
  * Date   : Februaruy 2020
  * flags    : -std=c++14
 */
