@@ -57,3 +57,49 @@ public:
         return zigzagOrder;
     }
 };
+
+
+// ********************************** 2 stack Approach **********************************
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root){
+        vector<vector<int>> zigzagOrder;
+        
+        if(!root)
+            return zigzagOrder;
+            
+        bool leftToRight = false;
+        stack<TreeNode*> next;
+        vector<int> values;
+        stack<TreeNode*> current;
+        current.push(root);
+        
+        while(!current.empty()){            
+            TreeNode* temp = current.top();
+            current.pop();
+            
+            values.push_back(temp->val);
+                
+            if(leftToRight){
+                if(temp->right)
+                    next.push(temp->right);
+                if(temp->left)
+                    next.push(temp->left);
+            }
+            else{
+                if(temp->left)
+                    next.push(temp->left);
+                if(temp->right)
+                    next.push(temp->right);
+            }
+            
+            if(current.empty()){
+                swap(current, next);
+                zigzagOrder.push_back(values);
+                leftToRight = !leftToRight;
+                values.clear();
+            }
+        }
+        return zigzagOrder;
+    }
+};
