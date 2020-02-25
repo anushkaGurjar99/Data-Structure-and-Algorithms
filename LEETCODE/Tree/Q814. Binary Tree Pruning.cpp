@@ -33,11 +33,14 @@ public:
         bool left = letsPrune(node->left);
         bool right = letsPrune(node->right);
         
-        if(!left)
-            node->left = nullptr;
-        if(!right)
+        if(!left){
+            node->left = nullptr;    
+            delete node->left;
+        }
+        if(!right){
             node->right = nullptr;
-        
+            delete node->right;
+        }
         return node->val || left || right;
     }
 };
