@@ -22,14 +22,14 @@ using namespace std;
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k){
-        return find(root, k);
+        return inOrder(root, k);
     }
     
-    int find(TreeNode* node, int& k){
+    int inOrder(TreeNode* node, int& k){
         if(!node)
             return 0;
         
-        int left = find(node->left, k);
+        int left = inOrder(node->left, k);
         
         k--;
         if(k == 0)
@@ -38,8 +38,35 @@ public:
         int right = 0;
         
         if(k > 0)                                    // If kth element not found in left subTree, then only visit right subTree
-            right = find(node->right, k);
+            right = inOrder(node->right, k);
         
         return (left > right) ? left : right;       // left, right => (result, 0) or (0, result)
     }
 };
+
+
+// *********************************** Similar approach ***********************************
+
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int k){
+        return inOrder(root, k);
+    }
+    
+    long int inOrder(TreeNode* node, int& k){
+        if(!node)
+            return LONG_MIN;
+        
+        long int left = inOrder(node->left, k);
+        if(left != LONG_MIN)
+            return left;
+        
+        k--;
+        if(k == 0)
+            return node->val;
+        
+        return inOrder(node->right, k);
+    }
+};
+
+// overhead reduction : If solution is found in left subTree, no need to find in right subTree.
