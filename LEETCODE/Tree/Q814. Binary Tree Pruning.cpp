@@ -23,8 +23,8 @@ using namespace std;
 class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root){
-        letsPrune(root);
-        return (root->val == 1 || root->left || root->right) ? root : nullptr;
+        bool result = letsPrune(root);
+        return result ? root : nullptr;
     }
     bool letsPrune(TreeNode* node){
         if(!node)
