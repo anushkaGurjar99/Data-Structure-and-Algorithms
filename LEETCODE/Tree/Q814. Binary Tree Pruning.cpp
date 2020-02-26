@@ -70,6 +70,9 @@ public:
             return root;
         else
             return (root->val == 0) ? nullptr : root;
+        
+        // one liner for above conditions
+        // return (left || right || root->val == 1) ? root : nullptr;
     }
 };
 
