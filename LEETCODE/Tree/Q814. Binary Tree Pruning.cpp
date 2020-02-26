@@ -44,3 +44,32 @@ public:
         return node->val || left || right;
     }
 };
+
+// ********************************** Approach 2: InFunction **********************************
+class Solution {
+public:
+    TreeNode* pruneTree(TreeNode* root){
+            if(!root)
+            return nullptr;
+        
+        TreeNode* left = pruneTree(root->left);
+        TreeNode* right = pruneTree(root->right);
+        
+        if(!left){
+            root->left = nullptr;    
+            delete root->left;
+        }
+        if(!right){
+            root->right = nullptr;
+            delete root->right;
+        }
+        
+        if(left)
+            return root;
+        else if(right)
+            return root;
+        else
+            return (root->val == 0) ? nullptr : root;
+    }
+};
+
