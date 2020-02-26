@@ -29,7 +29,34 @@ public:
             }
         }
         
-        return (sequence.size() == 0 ) ? 1 : 0;
+        return sequence.empty();
+    }
+};
+
+
+// ******************************************* Approach 2 *******************************************
+class Solution {
+public:
+    bool isValid(string s){
+        
+        stack<char> sequence;
+        
+        for(auto ch: s){
+            if(ch=='(' || ch=='{' || ch=='['){
+                sequence.push(ch);
+            }
+            else{
+                if(sequence.empty())
+                    return false;
+                char top  = sequence.top();
+                if(top == '(' && ch == ')' || top == '{' && ch == '}' || top == '[' && ch == ']')
+                    sequence.pop();
+                else
+                    return false;
+            }
+        }
+        
+        return sequence.empty();
     }
 };
 
