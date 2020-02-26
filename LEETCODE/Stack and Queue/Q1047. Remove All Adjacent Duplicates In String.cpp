@@ -13,25 +13,22 @@ using namespace std;
 class Solution {
 public:
     string removeDuplicates(string S) {
-        stack<char> sequence;
+        
+        // using string as Stack
         string result;
         
-        for(int i = 0; i < S.size(); i++){   
-            if(sequence.empty()){
-                sequence.push(S[i]);
+        for(int i = 0; i < S.size(); i++){
+            
+            if(result.empty()){
                 result += S[i];
-            }      
-            else{
-                if(S[i] == sequence.top()){
-                    sequence.pop();
-                    result.pop_back();
-                }
-                else{
-                    sequence.push(S[i]);
-                    result += S[i];    
-                }
             }
-        }     
+            else{
+                if(S[i] == result.back())
+                    result.pop_back();
+                else
+                    result += S[i];    
+            }
+        }
         
         return result;
     }
