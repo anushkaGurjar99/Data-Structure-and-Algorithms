@@ -15,22 +15,14 @@ public:
     string removeDuplicates(string S) {
         
         // using string as Stack
-        string result;
-        
+        string res;
         for(int i = 0; i < S.size(); i++){
-            
-            if(result.empty()){
-                result += S[i];
-            }
-            else{
-                if(S[i] == result.back())
-                    result.pop_back();
-                else
-                    result += S[i];    
-            }
+            if(!res.empty() && S[i] == res.back() )
+                res.pop_back();
+            else
+                res.push_back(S[i]);                        // res += S[i];
         }
-        
-        return result;
+        return res;
     }
 };
 
