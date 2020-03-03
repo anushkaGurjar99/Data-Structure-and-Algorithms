@@ -43,26 +43,29 @@ public:
         
         for(int i = 0; i < S.size(); i++){
             
-            bool bit = false;
-            
-            if(S[i] == '(')
+            if(S[i] == '('){
                 flag++;
+                if(flag > 1){
+                    result += S[i];
+                }   
+            }
             
             if(S[i] == ')'){
-                if(flag == 1)
-                    flag = 0;
-                else
-                    bit = true;
-            }
-            
-            if(flag > 1){
-                result += S[i];
-            }
-            
-            if(bit == true)
+                if(flag > 1)
+                    result += S[i];
                 flag--;
+            }
         }
         
         return result;
     }
 };
+
+/*
+maintain a flag which is keeping count of (
+when flag == 1, dont append into result
+
+when an ) comes, check if flag > 1
+            if it is, insert S[i] into res else don't
+decreament the flag by 1
+*/
