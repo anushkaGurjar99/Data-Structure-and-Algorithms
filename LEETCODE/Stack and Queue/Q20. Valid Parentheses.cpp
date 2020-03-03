@@ -16,31 +16,6 @@ public:
         
         stack<char> sequence;
         
-        for(int i = 0; i < s.size(); i++){
-            if(sequence.size() > 0){
-                int top = sequence.top();
-                if(top == '(' && s[i] == ')' || top == '{' && s[i] == '}' || top == '[' && s[i] == ']')
-                    sequence.pop();
-                else
-                    sequence.push(s[i]);
-            }
-            else{
-                sequence.push(s[i]);
-            }
-        }
-        
-        return sequence.empty();
-    }
-};
-
-
-// ******************************************* Approach 2 *******************************************
-class Solution {
-public:
-    bool isValid(string s){
-        
-        stack<char> sequence;
-        
         for(auto ch: s){
             if(ch=='(' || ch=='{' || ch=='['){
                 sequence.push(ch);
