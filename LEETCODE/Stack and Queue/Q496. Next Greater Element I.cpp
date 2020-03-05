@@ -44,3 +44,28 @@ public:
         return result;
     }
 };
+
+
+
+// ************************************ Next Greater Element
+        
+        vector<int> res(nums.size(),-1);
+        stack<int> temp;
+        
+        for(int i = 0; i < nums.size(); i++){
+            if(temp.empty() || nums[temp.top()] >= nums[i]){
+                temp.push(i);
+            }
+            else{
+                while(nums[temp.top()] < nums[i]){
+                    int x = temp.top();
+                    res[x] = nums[i];
+                    temp.pop();
+                    if(temp.empty())
+                        break;
+                }
+                temp.push(i);
+            }
+        }
+        return res;
+        
