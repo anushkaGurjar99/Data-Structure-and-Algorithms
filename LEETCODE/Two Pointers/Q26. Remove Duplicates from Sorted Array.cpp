@@ -52,3 +52,32 @@ public:
         return curr;
     }
 };
+
+
+/************************************** Another way *********************************************/
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        
+        int start = 0;
+        int end = nums.size() - 1;
+        
+        while(start <= end){
+            if(start + 1 <= end && nums[start] == nums[start + 1]){
+                nums[start] = nums[end];
+                int next = nums[end];
+                while(end >= 0 && next == nums[end])
+                    end--;
+            }
+            start++;
+        }
+        
+        nums.resize(start);
+        sort(nums.begin(), nums.end());
+        
+        return start;
+    }
+};
+
+// rearrange the elements using 2 pointers and as soon as elements are arranged. sort the resized array.
