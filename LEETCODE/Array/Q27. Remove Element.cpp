@@ -9,6 +9,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/remove-element
 
+/* Two Pointer Approach*/
 class Solution {
 public:
     int removeElement(vector<int>& nums, int val) {
@@ -37,4 +38,10 @@ public:
         return start;
     }
 };
-// Two pointer approach
+
+/*  Brute force Approach: O(n2) time
+    for each nums[i] == val find the next element which is != val and swap both */
+
+/*  Extra space Approach: O(n) time, O(n) space
+    use a stack to store the desired elements (keep a count of elements) 
+    rezise nums to the count and resotre elements by poping from stack */
