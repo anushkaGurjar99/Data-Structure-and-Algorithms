@@ -39,3 +39,13 @@ class Solution {
         } 
     }
 };
+
+
+/*
+Another approaches (not following the follow up)
+- count no of 0, 1 and 2 in pass 1. Then in 2nd pass overwrite accordingly.
+
+- sort the array.
+
+- create another array of same size and store accordingly. (fill with 1, process 0 and 2 only)
+*/
