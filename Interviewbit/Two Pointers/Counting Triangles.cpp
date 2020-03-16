@@ -40,3 +40,6 @@ int Solution::nTriang(vector<int> &nums){
         
         return result;
 }
+
+
+// another approaches: Three pointer(sorted data), brute force  
