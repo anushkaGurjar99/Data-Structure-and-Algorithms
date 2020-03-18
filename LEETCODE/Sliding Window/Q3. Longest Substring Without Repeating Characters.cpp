@@ -17,26 +17,28 @@ public:
             return 0;
         
         unordered_multimap<char, int> uniques;
-        int count = 0;
+        int start = 0;
+        int end = 0;
         int result = 0;
         
         for(int i = 0; i < s.size(); i++){
             auto itr = uniques.find(s[i]);
             
-            // element not found || element found but it wasn't in our CURRENT window
-            if(itr == uniques.end() || (itr != uniques.end() && i - count > itr->second)){
-                count++;
-                result = max(count, result);
-            }
-            else{
-                // no. of elements in CURRENT window will be difference of curr element and duplicate 
-                count = (i - itr->second);              
-            }
+            if(itr != uniques.end() && itr->second >= start)
+                start = itr->second + 1;
             
-            // insert the element in CURRENT window
+            end++;
+            result = max(result, end - start);
             uniques.insert({s[i], i});
         }
         
         return result;
     }
 };
+
+/*
+START and END denoting the begin and end of our current window
+
+keep incr END in every iteration, check if s[i] already exist in CURRENT window then move START to
+that occurance
+*/
