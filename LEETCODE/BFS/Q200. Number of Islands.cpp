@@ -86,3 +86,52 @@ public:
         return numberOfIsland;
     }
 };
+
+
+// **************************************** BFS + DFS ********************************************************
+// BFS for traversal, DFS for removal
+
+class Solution {
+public:
+    int numIslands(vector<vector<char>>& grid){
+        
+        if(grid.size() == 0)
+            return 0;
+        
+        int numberOfIsland = 0;
+        
+        for(int row = 0; row < grid.size(); row++){
+            
+            for(int col = 0; col < grid[row].size(); col++){
+                    
+                    if(grid[row][col] == '1'){
+                        numberOfIsland++;
+                        coverArea(grid, row, col);
+                    }
+            }
+        }
+        
+        return numberOfIsland;
+    }
+    
+    void coverArea(vector<vector<char>>& grid, int row, int col){
+        
+        // if row number is not in range
+        if(row == grid.size() || row < 0)
+            return;
+        
+        // if column number is not in range
+        if(col < 0 || col == grid[row].size())
+            return;
+        
+        if(grid[row][col] == '1'){
+            grid[row][col] = '2';
+
+            coverArea(grid, row-1, col);          // top
+            coverArea(grid, row+1, col);          // bottom
+            coverArea(grid, row, col-1);          // left
+            coverArea(grid, row, col+1);          // right
+        }
+        
+    }
+};
