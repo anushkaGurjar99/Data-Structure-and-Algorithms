@@ -29,10 +29,12 @@ public:
         // -1 = unvisited, 0 = under process, 1 = visited
         vector<int> courseStatus(numCourses, -1);
         
-        for(int i = 0; i < numCourses; i++){
-            if(sequence.find(i) != sequence.end() && courseStatus[i] != 1 && !helper(sequence, courseStatus, i))
+        // visit only those elements which are in HASH MAP
+        for(auto const& curr: sequence){
+            if(courseStatus[curr.first] != 1 && !helper(sequence, courseStatus, curr.first))
                 return false;
         }
+        
         return true;
     }
     
