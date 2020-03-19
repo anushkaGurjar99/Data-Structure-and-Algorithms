@@ -10,6 +10,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/course-schedule
 
+/* TOPOLOGICAL SORTING */
 class Solution {
 public:
     bool canFinish(int numCourses, vector<vector<int>>& prerequisites){
