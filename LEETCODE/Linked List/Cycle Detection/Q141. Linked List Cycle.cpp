@@ -19,6 +19,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/linked-list-cycle/
 
+
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
@@ -27,14 +28,19 @@ public:
             return false;
         
         ListNode* slow = head;
-        ListNode* fast = head->next;
+        ListNode* fast = head;
+        bool hasCycle = false;
         
-        while(slow != fast && fast && fast->next){
+        while(fast && fast->next){
             slow = slow->next;
             fast = fast->next->next;
+            if(slow == fast){
+                hasCycle = true;
+                break;
+            }
         }
         
-        return (slow == fast);
+        return hasCycle;
     }
 };
 
