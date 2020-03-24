@@ -36,23 +36,37 @@ public:
 
 class Solution {
 public:
+    
+    Node* cloneGraph(Node* node){
+        unordered_map<Node*, Node*> m;
+        
+        fillMap(node, m);
+        
+        unordered_set<int> visited;
+        
+        connectNodes(node, m, visited);
+        
+        return m[node];
+    }
+    
+    // just creating the new nodes and storing in unordered_map, not filling anything
     void fillMap(Node* root, unordered_map<Node*, Node*>& m){
-        if(!root){
+        if(!root)
             return;
-        }
-        if(m.find(root)!=m.end()){
+
+        if(m.find(root) != m.end())     // return if it is already created
             return;
-        }
+            
         m[root] = new Node(root->val);
         for(auto adjacent : root->neighbors){
             fillMap(adjacent, m);
         }
     }
 
+    // connecting the nodes, as they already exist in unordered_map    
     void connectNodes(Node* root, unordered_map<Node*, Node*>& m, unordered_set<int>& visited){
-        if(!root){
+        if(!root)
             return;
-        }
         
         visited.insert(root->val);
 
@@ -66,15 +80,6 @@ public:
         }
     }
 
-    Node* cloneGraph(Node* node) {
-        unordered_map<Node*, Node*> m;
-        
-        fillMap(node, m);
-        
-        unordered_set<int> visited;
-        
-        connectNodes(node, m, visited);
-        
-        return m[node];
-    }
 };
+
+
