@@ -29,8 +29,9 @@ public:
     vector<vector<int>> getThreeSum(vector<int> nums, unordered_multimap<int,int> m){
         vector<vector<int>> result;
         
-        for(int i = 0; i < nums.size() && nums[i] <= 0; i++){          // check only -ve and 0
-            for(int j = i+1; j < nums.size(); j++){                    // check all
+        // for both for loop, check only relevant elements
+        for(int i = 0; i < nums.size() && nums[i] <= 0; i++){
+            for(int j = i+1; j < nums.size() && (nums[i] + nums[j]) <= 0; j++){     
                 
                 auto itr = m.find(-(nums[i] + nums[j]));
                 
