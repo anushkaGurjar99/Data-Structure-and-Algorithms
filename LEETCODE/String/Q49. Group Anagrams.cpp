@@ -28,6 +28,8 @@ public:
     }
         
 private:
+    
+    // since the string only contains lower-case alphabets, we can sort them using counting sort to improve the time complexity.
     string stringSort(string s){
         
         int counter[26] = {0};
