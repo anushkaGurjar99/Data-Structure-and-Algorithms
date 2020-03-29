@@ -29,8 +29,8 @@ public:
             s_count[s[i] - 'a']++;
         
         for (int i = 0; i + p.size() <= s.size(); i++){
-            char index = s[i + p.size() - 1];
-            s_count[index - 'a']++;
+            char next = s[i + p.size() - 1];
+            s_count[next - 'a']++;
             
             if (p_count == s_count)
                 result.push_back(i);
@@ -40,6 +40,12 @@ public:
         return result;
     }
 };
+/*
+(Same as sliding window.) (Keep track of in-window char and check it with p_count)
+keep count of p-1 char in vector s_count(using next) and check it with p_count vector.
+keep decrementing the not-in-range char count in s_count.
+*/
+
 
 // TIME LIMIT EXCEED
 class Solution {
