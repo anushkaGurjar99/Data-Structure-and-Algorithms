@@ -12,6 +12,8 @@ using namespace std;
 /*
 Similar problem: Number of Island
 
+Keep marking the area as '2' which is visited
+
 what we need to do here is:
 store Start and End of each row (containing 1) in a vector
 after ending of the region, calculate the CURR_AREA of region and compare with RESULT
