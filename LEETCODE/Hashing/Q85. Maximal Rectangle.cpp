@@ -10,6 +10,14 @@ using namespace std;
 // Problem Statement: https://leetcode.com/problems/maximal-rectangle/
 
 /*
+Similar problem: Max area in Histogram
+take a vector of column size(with all values 0)
+  
+  keep adding the row[i] into vector and calculate area using Histogram method
+*/
+
+
+/*
 Similar problem: Number of Island
 
 Keep marking the area as '2' which is visited
