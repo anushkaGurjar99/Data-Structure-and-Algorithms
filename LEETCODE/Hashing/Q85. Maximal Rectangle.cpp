@@ -15,25 +15,9 @@ Similar problem: Number of Island
 Keep marking the area as '2' which is visited
 
 what we need to do here is:
-store Start and End of each row (containing 1) in a vector
+store Start and End of each row (containing 1) in a 2Dvector (region can be divided like [0 1 0 1 1 1 0 1 1 0])
 after ending of the region, calculate the CURR_AREA of region and compare with RESULT
 
 how to calculate CURR_AREA ? (maintain a leftBorder and rightBorder for simplicity)
-left = right = -1
-
-    if(borders does not exist OR are not same as prev)
-      area = (right - left + 1)
-      result = max(area, result)
-      match = 1;
-      
-      // update the borders 
-      left = first, right = second
-    else
-      match++;
-      result = max(result, area * match);
-    
-if arr[i + 1th] area's border matches with prev border then simply add the region in result else calculate and compare with result.
-*/
-
 
 // for better understanding DRY RUN yourself
