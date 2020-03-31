@@ -9,6 +9,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/contiguous-array/
 
+// Similar problme: max subarray sum equals to K
 class Solution {
 public:
     int findMaxLength(vector<int>& nums) {
