@@ -18,14 +18,16 @@ public:
         
         unordered_set<int> modk;
         
-        for(int i = 0; i < nums.size(); i++){
+        for(int i = 0; i < nums.size(); i++){                                                                    
             cf += nums[i];
-            int mod = (k == 0) ? cf : cf % k;
+            int mod = (k == 0) ? cf : cf % k;      
+            
             if(modk.count(mod))
                 return true;
+            
             modk.insert(pre);
             pre = mod;
-        }
+        }    
         
         return false;
     }
