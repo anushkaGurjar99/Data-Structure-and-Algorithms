@@ -38,3 +38,14 @@ There is really no need to use map, the required length is at least 2, so we jus
 
 one possible explanation: if two numbers (s1 and s2) have the same remainder , and the divisor is k , then s2-s1 must be divided by k , that's why the author store the previous remainder
 */
+
+
+
+/*
+Example
+[4, 1, 2, 3] and 6
+
+if we get the accumulated sum, it looks like this [4, 5, 7, 10]
+if we make it accumulated sum % k, it looks like this [4, 5, 1, 4]
+notice that there is duplicated 4's. The diffference between these two sums in theory must be a multiple of 6 since we've only been storing the num%k
+*/
