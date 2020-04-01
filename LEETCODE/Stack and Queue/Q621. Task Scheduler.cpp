@@ -14,10 +14,12 @@ class Solution{
 public:
     int leastInterval(vector<char>& tasks, int n) {
         
+        if(n == 0 || tasks.size() < 2)
+            return tasks.size();
         
-        int pos = 0;
-        
+        int size = 0;
         unordered_map<char, short> mapp;
+        
         for(auto task: tasks)
             mapp[task]++;
         
@@ -29,17 +31,13 @@ public:
         pair<short, char> curr = order.top();                       
         order.pop();
         
-        pos = curr.first + ((curr.first - 1) * n);                   // fill the gap in advance
+        size = curr.first + ((curr.first - 1) * n);                   // fill the gap in advance
         
         while(!order.empty() && order.top().first == curr.first){    // if same freq exist
-            ++pos;
+            ++size;
             order.pop();
-        }
-        
-        if(pos < tasks.size())                                        // the 0 case
-            pos += (tasks.size() - pos);
-        
-        return pos;
+        }        
+        return size > tasks.size() ? size : tasks.size();               // edge case(1)                 
     }
 };
 // explanation -> https://leetcode.com/problems/task-scheduler/discuss/370755/C%2B%2B-solution-95-time-and-space-with-good-explanation
