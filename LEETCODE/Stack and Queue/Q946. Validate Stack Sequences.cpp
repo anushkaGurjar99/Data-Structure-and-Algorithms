@@ -10,6 +10,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/validate-stack-sequences/
 
+// Greedy Solution
 class Solution{
 public:
     bool validateStackSequences(vector<int>& pushed, vector<int>& popped){
