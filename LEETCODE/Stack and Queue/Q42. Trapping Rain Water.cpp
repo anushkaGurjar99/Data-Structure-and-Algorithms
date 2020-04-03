@@ -36,7 +36,7 @@ public:
             }
         }
         
-        if(!area.empty()){
+        if(!area.empty()){                              // when you have visited whole points and no bigger point found
     
             start = area.top();
             area.pop();
@@ -54,6 +54,8 @@ public:
         return water;
     }
 };
+// Keep pushing the smaller than 'i' area into stack, if you discovered a point which is greater than 'i' or whole points visited, then collect water.
+
 
 // ********************************* Two Pointer Approach *********************************
 class Solution {
@@ -105,3 +107,5 @@ Two pointer approach ('start' and 'end')
     terminate the loop when start == end
     
 */
+
+// keep adding from the point which is smaller and collect in waterCollected.
