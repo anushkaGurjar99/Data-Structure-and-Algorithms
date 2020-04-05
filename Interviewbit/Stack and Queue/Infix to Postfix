@@ -1,0 +1,72 @@
+
+
+// Unable to process Parenthese, (suggestions will be appreciated)
+
+void getExpression(stack<string>& values, stack<string>& sign, bool flag){
+    
+    do{
+        string two = values.top();
+        values.pop();
+        string one = values.top();
+        values.pop();
+        string s = sign.top();
+        sign.pop();
+        
+        string result = one + two + s;
+        
+        if(values.empty()){
+            flag = false;
+        }
+        else if(values.top() == "("){
+            values.pop();
+            sign.pop();
+            flag = false;
+        }
+        
+        values.push(result);
+        
+    }while(flag);
+}
+
+string Solution::solve(string A){
+    
+    stack<string> sign;
+    stack<string> values;
+    unordered_map<string, int> priority;
+    
+    priority["("] = 5;
+    priority["^"] = 4;
+    priority["/"] = 3;
+    priority["*"] = 2;
+    priority["+"] = 1;
+    priority["-"] = 1;
+
+    for(int i = 0; i < A.size(); i++){
+        
+        string curr = string(1, A[i]);
+        
+        if(curr == "/" || curr == "^" || curr == "*" || curr == "+" || curr == "-"){
+            
+            if(!sign.empty() && priority[sign.top()] > priority[curr] ){
+                getExpression(values, sign, false); 
+            }
+            sign.push(curr);
+            
+        }
+        else if(curr == "("){
+            values.push(curr);
+            sign.push(curr);
+        }
+        else if(curr == ")"){
+            getExpression(values, sign, true);
+        }
+        else{
+            values.push(curr);
+        }
+    }
+    
+    getExpression(values, sign, true);          // process whole stack
+    
+    return values.top();
+}
+
