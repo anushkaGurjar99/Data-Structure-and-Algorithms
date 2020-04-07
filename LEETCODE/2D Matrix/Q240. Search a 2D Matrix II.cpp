@@ -20,13 +20,14 @@ public:
         int col = matrix[0].size() - 1;
         
         while(row < matrix.size() && col >= 0){
-            if(matrix[row][col] == target)
-                return true;
             
             if(matrix[row][col] > target)
                 col--;
-            else
+            else if(matrix[row][col] < target)
                 row++;
+            else 
+                return true;
+        
         }
         
         return false;
@@ -35,8 +36,9 @@ public:
 
 /*
 Start from Top-Right corner,
-  Return true if target found 
   If the cell value is Greater than target -> Move left
-  If the cell value is Less than target -> Move bottom
+  Else If the cell value is Less than target -> Move bottom
+  Else (Return true as target found) 
+  
 Exit if you run out of cells and return false;
 */
