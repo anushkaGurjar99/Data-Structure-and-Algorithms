@@ -9,42 +9,24 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/search-a-2d-matrix/
 
+
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target){
         
-        if(matrix.size() == 0 || matrix[0].size() == 0)
-            return false;
+        int row = 0;
         
-        int targetRow = -1;
-        
-        int r;
-        for(r = 0; r < matrix.size(); r++){
-            if(matrix[r][0] <= target)
-                targetRow = r;
-            else
-                break;
-        }
-        
-        return  targetRow == -1 ? false : 
-                matrix[r - 1][0] == target ? 
-                true : isTargetRowContainsTarget(matrix, targetRow, target);
-    }
-    
-    bool isTargetRowContainsTarget(vector<vector<int>>& m, int row, int target){
-        
-        int start = 0;
-        int end = m[0].size() - 1;
-        
-        while(start <= end){
-            if(m[row][start] == target || m[row][end] == target)
-                return true;
-            
-            if(m[row][start] > target || m[row][end] < target)
-                break;
-            
-            ++start;
-            --end;
+        while(row < matrix.size()){
+            if(row + 1 < matrix.size() && matrix[row][0] <= target && matrix[row + 1][0] <= target){
+                row++;
+            }
+            else{
+                for(int col = 0; col < matrix[0].size(); col++){
+                    if(matrix[row][col] == target)
+                        return true;
+                }
+                return false;
+            }
         }
         
         return false;
@@ -53,9 +35,6 @@ public:
 
 /*
 Approach:
-
-    find the last row which has it's first values less than target (this is our target row)
-    
-    search from both ends in target row, (break the search and return false IF target is not in range)
-    after whole search if value matched then return true else false;
+Find the target Row
+Then search the target Row
 */
