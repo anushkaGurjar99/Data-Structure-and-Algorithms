@@ -9,8 +9,45 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/toeplitz-matrix/
 
-#include<stdio.h>
-using namespace std;
+class Solution {
+public:
+    bool isToeplitzMatrix(vector<vector<int>>& matrix){
+        
+        for(int c = 0; c < matrix[0].size(); c++){
+            if(!isDiagonal(matrix, 0, c))
+                return false;
+        }
+        
+        for(int r = 1; r < matrix.size(); r++){
+            if(!isDiagonal(matrix, r, 0))
+                return false;
+        }
+        
+        return true;
+    }
+    
+    bool isDiagonal(vector<vector<int>>& matrix, int row, int col){
+        
+        int dr = matrix.size();
+        int dc = matrix[0].size();
+        int val = matrix[row][col];
+        
+        while(++row < dr && ++col < dc){
+            if(matrix[row][col] != val)
+                return false;
+        }    
+        
+        return true;
+    }
+    
+};
+
+/*
+Scan all start points of Diagonals (obviously it belongs to First row and First column)
+*/
+
+
+// ***************************************************** USING DEQUE *****************************************************
 
 class Solution{
 public:
