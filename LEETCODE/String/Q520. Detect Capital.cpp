@@ -9,6 +9,24 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/detect-capital/
 
+class Solution{
+public:
+    bool detectCapitalUse(string word){
+        
+        for(int i = 1; i < word.size(); i++){
+            if(isupper(word[1]) != isupper(word[i]) || islower(word[0]) && isupper(word[i])) 
+                return false;
+        }        
+        return true;
+    }
+    
+};
+/* 
+1~n must be the same, (0 lower, 1-n supper) is not the case!
+*/
+
+// ****************************************************************************************************************************
+
 class Solution {
 public:
     bool detectCapitalUse(string word){
