@@ -17,10 +17,7 @@ public:
     
     void reverse(int start, int end, vector<char>& str){
         if(start < end){
-            char temp = str[start];
-            str[start] = str[end];
-            str[end] = temp;
-            
+            swap(str[start],str[end]);
             reverse(start + 1, end - 1, str);
         }
     }
