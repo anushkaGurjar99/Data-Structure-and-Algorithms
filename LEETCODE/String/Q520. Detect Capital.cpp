@@ -19,23 +19,23 @@ public:
         bool result;
         
         if(islower(word[0]))
-            result = isAllSmall(word);
+            result = isAllSmall(word, 1);
         else
-            result = islower(word[1]) ? isAllSmall(word) : isAllCapital(word);
+            result = islower(word[1]) ? isAllSmall(word, 1) : isAllCapital(word, 1);
             
         return result;
     }
     
-    bool isAllSmall(string s){
-        for(int i = 1; i < s.size(); i++){
+    bool isAllSmall(string s, int start){
+        for(int i = start; i < s.size(); i++){
             if(s[i] < 'a' || s[i] > 'z')
                 return false;
         }
         return true;
     }
     
-    bool isAllCapital(string s){
-        for(int i = 1; i < s.size(); i++){
+    bool isAllCapital(string s, int start){
+        for(int i = start; i < s.size(); i++){
             if(s[i] < 'A' || s[i] > 'Z')
                 return false;
         }
