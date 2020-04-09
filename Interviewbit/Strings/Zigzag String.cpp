@@ -1,6 +1,6 @@
 /*
  * Author : Anushka Gurjar
- * Date   : March 2020
+ * Date   : April 2020
  * flags    : -std=c++14
 */
 
@@ -8,6 +8,41 @@
 using namespace std;
 
 // Problem Statement: https://www.interviewbit.com/problems/zigzag-string/
+
+string Solution::convert(string s, int numRows){
+    if(numRows <= 1)
+        return s;
+        
+    vector<string> level (numRows, "");
+    string result = "";
+        
+    int curr = 0;
+    int step = 0;
+            
+    for(int i = 0; i < s.size(); i++){
+        
+        level[curr].push_back(s[i]);
+            
+        if(curr == 0)
+            step = 1;
+        else if(curr == numRows - 1)
+            step = -1;
+        
+        curr += step;
+    }
+        
+    for(auto itr: level)
+        result += itr;
+        
+    return result;
+}
+
+/*
+Create numRows string vectors and push the characters
+Then push the vectors into Result.
+*/
+
+// ********************************************* SCAN ONE LEVEL AT A TIME *********************************************
 
 string getCharacter(string s, int& curr, int level){
     curr += (level - 1) + (level - 1 - 1) + 1;
