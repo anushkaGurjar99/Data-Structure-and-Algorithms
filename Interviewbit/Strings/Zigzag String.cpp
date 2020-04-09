@@ -23,14 +23,16 @@ string Solution::convert(string s, int numRows){
         
         level[curr].push_back(s[i]);
             
-        if(curr == 0)
+        // Set the DIRECTION 
+        if(curr == 0)                   // DOWN
             step = 1;
-        else if(curr == numRows - 1)
+        else if(curr == numRows - 1)    // UP
             step = -1;
         
         curr += step;
     }
         
+    // Push all the levels
     for(auto itr: level)
         result += itr;
         
