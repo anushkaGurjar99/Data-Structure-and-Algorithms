@@ -81,3 +81,6 @@ A. Return 0.
 Q4. What if the integer overflows?
 A. Return INT_MAX if the number is positive, INT_MIN otherwise. 
 */
+
+
+// Another Approach : https://github.com/jatin69/coding-practice/blob/master/Interviewbit/strings/atoi.cpp
