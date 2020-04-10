@@ -20,7 +20,7 @@ int Solution::atoi(const string str){
         i++;
         
         
-    if(str[i] == '-' || str[i] == '+'){                     // If sign then get first chat with -+
+    if(str[i] == '-' || str[i] == '+'){                     // If sign exist, then get first char with -+ (because sign has to be hold by some value)
         sign = str[i];
         i++;
             
