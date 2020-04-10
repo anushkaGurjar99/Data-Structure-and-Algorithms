@@ -12,10 +12,9 @@ using namespace std;
 string getVersion(string str, int& k){
     string num = "";
     
-    while(k < str.length() && str[k] == '0')
+    while(k < str.length() && str[k] == '0')                    // skip 0s
         k++;
-    
-    while(k < str.length() && str[k] != '.'){
+    while(k < str.length() && str[k] != '.'){                   // store the subVersion
         num.push_back(str[k]);
         k++;
     }
@@ -23,7 +22,7 @@ string getVersion(string str, int& k){
     return num;
 }
 
-short whoIsGreater(short one, short two){
+short whoIsGreater(short one, short two){                     
     short ret = 0;
     if(one > two)
         ret = 1;
@@ -55,7 +54,7 @@ int Solution::compareVersion(string A, string B){
         string one = getVersion(A, i);
         string two = getVersion(B, j);
         
-        // If length is not same than we definitely found our answer (The one with shorter length is greater)
+        // If length is not same than we definitely found our answer (The one with greater length is answer)
         
         result = whoIsGreater(one.length(), two.length());
         if(result != 0)
@@ -63,17 +62,16 @@ int Solution::compareVersion(string A, string B){
 
         for(int x = 0; x < one.length() && x < two.length(); x++){
             
-            result = whoIsGreater(one[x] - '0', two[x] - '0');
+            result = whoIsGreater(one[x] - '0', two[x] - '0');              // compare each char
             if(result != 0)
                 break;
         }
         
-        if(result != 0)
+        if(result != 0)                                                     // this mean that subVersions are same
             break;
         
         i++;
         j++;
-        
     }
     
     return result;
@@ -94,6 +92,10 @@ then :
         (if greater found then exist with ansewer else check next number)
     
     (otherwise check next subVersion) 
+    
+    
+
+Note: You can add one more case to check that is both subVersion are same? Then you do not need loop to compare each number of versions
 }
 */
 
