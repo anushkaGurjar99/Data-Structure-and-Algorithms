@@ -101,6 +101,6 @@ Note: You can add one more case to check that is both subVersion are same? Then 
 
 
 
-Another approch: https://leetcode.com/submissions/detail/322603693/
+// Another approch: https://leetcode.com/submissions/detail/322603693/
 /* subVersion is stored in LONG which directly reduce the overhead of comparision, but interviewbit has overflow cases for the sol */
 
