@@ -9,10 +9,6 @@ using namespace std;
 
 // Problem Statement: https://www.interviewbit.com/problems/power-of-2/
 
-#include<stdio.h>
-
-#include<stdio.h>
-
 int Solution::power(string A){
     
     if(A == "")
