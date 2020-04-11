@@ -24,7 +24,6 @@ string getNextSequence(string s){
         next.push_back(count + '0');
         next.push_back(ch);
     }
-        
     return next;
 }
     
