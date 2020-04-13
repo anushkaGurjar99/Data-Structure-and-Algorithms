@@ -37,3 +37,8 @@ string Solution::solve(string s){
     return result;
 }
     
+/*
+Another approach:
+    reverse the whole string then
+    reverse each word
+*/
