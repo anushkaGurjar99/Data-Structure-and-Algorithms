@@ -55,3 +55,100 @@ public:
 };
 
 // https://leetcode.com/problems/valid-number/discuss/23798/Cleanest-C%2B%2B-Solution-using-DFA-(impress-your-interviewer-with-elegant-code!!)
+
+
+// *********************************************** Without DFA *********************************************************
+
+class Solution {
+public:
+    bool isNumber(string s){
+        
+        int i = 0;
+        bool hasDigit = false;
+        bool hasFraction = false;
+        bool hasExponent = false;
+        bool hasSignAfterExponent = false;
+            
+        skipSpaces(s, i);
+        
+        if(s[i] == '+' || s[i] == '-')
+            i++;
+        
+        for(; i < s.length(); i++){
+            char ch = s[i];           
+            
+            if(isdigit(ch) != 0){
+                hasDigit = true;
+                continue;
+            }
+            
+            if(ch == ' '){
+                skipSpaces(s, i);
+                break;
+            }
+            
+            if(ch == '.'){
+                if(hasExponent || !isDotValid(s, i) || hasFraction)
+                    break;
+                hasFraction = true;
+            }
+            else if(ch == 'e'){
+                if(!isExponentValid(s, i) || hasExponent || !hasDigit)
+                    break;
+                hasExponent = true;
+            }
+            else if(ch == '+' || ch == '-'){
+                if(!hasExponent || hasSignAfterExponent || s[i-1] != 'e')
+                    break;
+                hasSignAfterExponent = true;
+            }
+            else{
+                break;
+            }
+        }
+        return (i == s.length() && hasDigit);
+    }
+    
+    void skipSpaces(string s, int& i){
+        while(i < s.size() && s[i] == ' ')
+            i++;
+    }
+    
+    // check both sides of 'e' both must be non empty and valid
+    bool isExponentValid(string s, int i){
+        int prev = i - 1;
+        int next = i + 1;
+        if(prev >= 0 && next < s.length()){
+            if(s[next] == '+' || s[next] == '-')                        // next of 'e' can be a sign or digit
+                next++;
+            if(next >= s.length() || isdigit(s[next]) == 0)
+                return false;
+                    
+            if(s[prev] == '.'){}                                        // prev of 'e' can be a '.' or digit
+            else if(isdigit(s[prev]) == 0)
+                return false;
+        }
+        else{
+            return false;
+        }   
+        return true;
+    }
+    
+    // validate both sides of '.', it must contain a 'e' or digit at either side.
+    bool isDotValid(string s, int i){
+        bool n = true;
+        bool p = true;
+        if(i+1 >= s.length() || (isdigit(s[i+1]) == 0 || s[i+1] == 'e'))                    // next can be 'e' or digit        
+            n = false;
+        if(i-1 < 0 || (isdigit(s[i-1]) == 0 || s[i-1] == 'e'))                              // prev can be 'e' or digit
+            p = false;
+                
+        if(!n && !p)                                                                        // sides failed to be valid then invalid num
+            return false;
+        
+        return true;
+    }
+};
+
+
+
