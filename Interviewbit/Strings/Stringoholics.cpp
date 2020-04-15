@@ -9,8 +9,7 @@ using namespace std;
 
 // Problem Statement: https://www.interviewbit.com/problems/stringoholics/
 
-#include<stdio.h>
-
+// Time Limit Exceed for last testcase
 bool rotateAllStrings(vector<string> &A, vector<string> original, int& rotation){
     
     for(int i = 0; i < A.size(); i++){
