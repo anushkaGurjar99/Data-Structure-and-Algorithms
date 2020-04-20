@@ -89,3 +89,6 @@ Approach:
     each time we update 'number of zeros', 'start', 'end'
 */
 
+
+// short trick
+// https://leetcode.com/problems/integer-to-roman/discuss/6489/Sharing-my-really-simple-solution-with-explanation
