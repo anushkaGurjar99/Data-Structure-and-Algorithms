@@ -29,7 +29,7 @@ to make it heap again. This process is called heapifying. In maxheap, to heapify
 and swap it with the current element and continue this process until the heap property is satisfied at every node. (PercolateDown)<br>
 To heapify, find the maximum of its children and swap with that. <br>
 <b> One important property of heap is that, if an element is not satisfying the heap
-property, then all the elements from that element to the root will have the same problem. <b>
+property, then all the elements from that element to the root will have the same problem. </b>
   
 ###### Deleting an Element
 To delete an element from heap, we just need to delete the element from the root. This is the only
