@@ -20,8 +20,6 @@ public:
             m[x]++;
                 
 		priority_queue<P, vector<P>, greater<P>> q;      
-        // this is syntax of MAX Heap (when having more than 1 elements)
-        // for min heap you can directly use pair
         
 	    for(auto x : m){
 		    if (q.size() < k){
