@@ -37,3 +37,6 @@ operation (maximum element) supported by standard heap. After deleting the root 
 the last element of the heap (tree) and delete that last element. <br>
 After replacing the last element, the tree may not satisfy the heap property. To make it heap again,
 call the PercolateDown function. (PrelocateUp for inserting)
+
+### Note:
+each call to Heapify costs O(logn) and Build-Heap makes O(n) such calls.
