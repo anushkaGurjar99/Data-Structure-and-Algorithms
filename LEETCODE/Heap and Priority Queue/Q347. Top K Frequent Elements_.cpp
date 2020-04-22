@@ -12,35 +12,35 @@ using namespace std;
 typedef pair<int, int> P;
 class Solution {
 public:
-     vector<int> topKFrequent(vector<int>& nums, int k){
+	vector<int> topKFrequent(vector<int>& nums, int k) {
 		
-      unordered_map<int, int> m;
+        unordered_map<int, int> m;
 		
-      for (int x : nums) 	
-         m[x]++;
+        for (int x : nums) 	
+            m[x]++;
                 
-      priority_queue<P, vector<P>, greater<P>> q;      
-      // this is syntax of MIN Heap, by default it is the MAX heap
+		priority_queue<P, vector<P>, greater<P>> q;      
+        // this is syntax of MAX Heap (when having more than 1 elements)
+        // for min heap you can directly use pair
         
-      for(auto x : m){
- 	if (q.size() < k){
-           q.push({x.second, x.first});
-       	}
-	else{
-	   if(q.top().first < x.second){
-	       q.pop();
-       	       q.push({x.second, x.first});
-           }
-	}
-      }
+	    for(auto x : m){
+		    if (q.size() < k){
+                q.push({x.second, x.first});
+            }
+			else{
+				if(q.top().first < x.second){
+					q.pop();
+					q.push({x.second, x.first});
+				}
+			}
+		}
 		
-      vector<int> result;
-      while (!q.empty()){
-	 result.push_back(q.top().second);
-	 q.pop();
-      }
-       
-      return result;
-   }
+        vector<int> result;
+		while (!q.empty()){
+			result.push_back(q.top().second);
+			q.pop();
+		}
+        
+		return result;
+	}
 };
-
