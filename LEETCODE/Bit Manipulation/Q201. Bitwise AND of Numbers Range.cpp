@@ -12,6 +12,27 @@ using namespace std;
 class Solution{
 public:
     int rangeBitwiseAnd(int m, int n){
+        int misMatch = 0;
+        while(m != n){
+            ++misMatch;
+            m >>= 1;
+            n >>= 1;
+        }
+        return m << misMatch;
+    }
+};
+/*
+Approch:
+    count the number of misMatches 
+    shift the matched number with misMatches
+*/
+
+
+// **********************************************************************************************************
+
+class Solution{
+public:
+    int rangeBitwiseAnd(int m, int n){
         
         if(m == n || m == 0)
             return m;
@@ -59,19 +80,3 @@ Approach:
     
     right shift the number by 1
 */
-
-// Time Limit Exceed
-class Solution{
-public:
-    int rangeBitwiseAnd(int m, int n) {
-        if(n == m || n == 0)
-            return n;
-        
-        int result = n--;
-        while(n >= m){                  // AND all numbers individually
-            result = result & n;
-            n--;
-        }
-        return result;
-    }
-};
