@@ -25,8 +25,11 @@ public:
 Approch:
     count the number of misMatches 
     shift the matched number with misMatches
+    same as - 
+        while(m < n) 
+            n = n & (n-1);
+        return n;
 */
-
 
 // **********************************************************************************************************
 
