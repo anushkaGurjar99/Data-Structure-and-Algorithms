@@ -16,18 +16,15 @@ int Solution::nchoc(int limit, vector<int> &chocolates){
     for(auto i: chocolates)
         pq.push(i);
         
-    while(limit > 0){
+    while(limit-- > 0){
         int top = pq.top();
         pq.pop();
-        if(top == 0)
-            break;
         result += top;
-        top /= 2;
-        pq.push(top);
-        limit--;
+        pq.push(top / 2);
         result %= mod;
     }
     return result;
 }
 
 // to use mod: result %= static_cast<long>(pow(10,9) + 7);
+// as mentioned in question that top will be greater than or equal to 1, we don't need to check that is top == 0
