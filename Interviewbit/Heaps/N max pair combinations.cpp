@@ -43,3 +43,17 @@ vector<int> Solution::solve(vector<int> &A, vector<int> &B){
     }
     return ans;
 }
+
+/*
+Sort both the arrays
+Store INT_MIN + FirstArray[i] into priority_queue   // here we assume SecondArray has all values equal to INT_MIN 
+
+Loop through both arrays 
+    If SUM is greater than PQ's top
+        update PQ and keep checking
+    else 
+        break from both loop as their exist no greater element element 
+        
+Element in PQ are our final result
+*/
+
