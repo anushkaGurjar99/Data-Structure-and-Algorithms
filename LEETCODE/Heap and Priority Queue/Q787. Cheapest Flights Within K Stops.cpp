@@ -60,7 +60,7 @@ pq compares each object by total price so far
 Then explore:
     get PQ top which is minimum
     
-    if we are out of stops then break
+    if we are out of stops then stop exploring
     
     if top.source is equal to destination 
         return the cost (since it is minimum, no -ve edge)
