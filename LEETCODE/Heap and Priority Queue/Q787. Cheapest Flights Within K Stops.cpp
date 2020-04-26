@@ -9,7 +9,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/cheapest-flights-within-k-stops/
 
-// Dijkstra's algorithm
+// Dijkstra's algorithm (Each time we are exploring MIN cost path)
 
 typedef vector<pair<int,int>> VP;
 typedef tuple<int,int,int> ti;
