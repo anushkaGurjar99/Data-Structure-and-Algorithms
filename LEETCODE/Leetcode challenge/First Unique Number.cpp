@@ -65,3 +65,20 @@ To pop a number:
     pop Unique's front and repeat till above condition is True
   return the Unique's front (if exist, else -1)
 */
+
+/*
+Another Appraoch:
+  DS used: Greater PQ <i, num> and Unordered_map <num, i>
+  And a variable Last Unique (contains last unique found), and an index varible 
+  
+Push:
+  store each element in PQ with index and value
+  store each element in MAP (if element already exist then value = -1 else value = i)
+  
+Pop:
+  check MAP[Last] into map
+    return if i != -1
+  pop PQ top,
+    if MAP[top.num] != -1  (save it in Last and return Last)
+    else  POP from PQ and repeat till cond true
+*/
