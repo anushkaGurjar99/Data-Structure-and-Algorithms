@@ -13,18 +13,13 @@ vector<int> Solution::prevSmaller(vector<int> &A){
     vector<int> res(A.size(),-1);
     stack<int> nums;
     for(int i = A.size()-1; i >= 0; i--){
-        if(nums.empty() || A[nums.top()] <= A[i]){
-            nums.push(i);
-        }
-        else{
-            while(A[nums.top()] > A[i]){
+        if(!nums.empty() && A[nums.top()] > A[i]){
+            while(!nums.empty() && A[nums.top()] > A[i]){
                 res[nums.top()] = A[i];
                 nums.pop();
-                if(nums.empty())
-                    break;
             }
-            nums.push(i);
         }
+        nums.push(i);
     }
     return res;
 }
