@@ -30,6 +30,7 @@ public:
     }
 };
 
+/*
 Intuition:
 One pass on the string S we need to know, how many ')' we are waiting for.
 
@@ -47,3 +48,4 @@ When you met "(*(", you know you need one/two/three ")", balance = 1 and maxOpen
 
 The string is valid for 2 condition:
 maxOpen will never be negative., balance is 0 at the end.
+*/
