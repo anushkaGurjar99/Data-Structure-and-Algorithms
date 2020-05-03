@@ -1,13 +1,13 @@
 /*
  * Author : Anushka Gurjar
- * Date   : April 2020
+ * Date   : May 2020
  * flags    : -std=c++14
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
-// Problem Statement: https://leetcode.com/explore/challenge/card/may-leetcoding-challenge/534/week-1-may-1st-may-7th/3316/
+// Problem Statement: https://leetcode.com/problems/first-bad-version/
 
 // Forward declaration of isBadVersion API.
 bool isBadVersion(int version);
