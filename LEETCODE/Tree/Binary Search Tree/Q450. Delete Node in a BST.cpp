@@ -99,14 +99,9 @@ Approach:
 How would you update the node ?
   if node has both left and right child
       save node of left child into "t"
-      set node->left node into left of node->right ("leftest of right child": all values of right child are greater than left chiild)
+      set "t" into leftest of node->right (all values of right child are greater than left child: BST property)
   
   if node has right child return right
   if node has left child return left
   else nullptr
 */
-
-
-
-
-
