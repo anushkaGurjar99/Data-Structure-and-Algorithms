@@ -21,26 +21,26 @@ double Solution::findMedianSortedArrays(const vector<int> &A, const vector<int> 
     int high = x;
         
     while(low <= high){
-        int xpartition = (low + high)/2;
-        int ypartition = (x + y + 1) / 2 - xpartition;
+        int midX = (low + high)/2;
+        int midY = (x + y + 1) / 2 - midX;
         
-        int maxleftx  = (xpartition == 0) ? INT_MIN: A[xpartition-1];
-        int maxlefty  = (ypartition == 0)?  INT_MIN: B[ypartition-1];
-        int minrightx = (xpartition == x) ? INT_MAX: A[xpartition];
-        int minrighty = (ypartition == y)?INT_MAX : B[ypartition];
+        int maxLeftX  = (midX == 0) ? INT_MIN : A[midX - 1];
+        int maxLeftY  = (midY == 0) ? INT_MIN : B[midY - 1];
+        int minRightX = (midX == x) ? INT_MAX : A[midX];
+        int minRightY = (midY == y) ? INT_MAX : B[midY];
              
-        if(maxleftx <= minrighty && maxlefty <= minrightx){
-            double left = double(max(maxleftx, maxlefty));
-            double right = double(min(minrightx, minrighty));
+        if(maxLeftX <= minRightY && maxLeftY <= minRightX){
+            double left = double(max(maxLeftX, maxLeftY));
+            double right = double(min(minRightX, minRightY));
             if((x + y) % 2 == 0) 
                return (left + right) / 2;
             return left;    
         }
         
-        if(maxleftx > minrighty)        // move left
-            high = xpartition - 1;
-        else                            // move right
-            low = xpartition + 1; 
+        if(maxLeftX > minRightY)        // move left (Array1)
+            high = midX - 1;
+        else                            // move right (Array1)
+            low = midX + 1; 
     }
     return 0;
 }
