@@ -47,7 +47,9 @@ double Solution::findMedianSortedArrays(const vector<int> &A, const vector<int> 
 
 // https://www.youtube.com/watch?v=LPFhl65R7ww&t=1131s
 /*
-    we are applying BS on array B so size of array B must be > or = to array A
+
+    we are applying BS on array A so size of array A must be < or = to array B
+    Time C: O(log(min(M,N))
     
     partition both array and check the corner points
     if valid corners -> return the result
