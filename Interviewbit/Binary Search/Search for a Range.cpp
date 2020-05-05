@@ -65,7 +65,7 @@ vector<int> Solution::searchRange(const vector<int> &A, int target){
 }
 
 /*
-Search if the element exist in Array. (i)
+Check if the element exist in Array. (i)
 If it does then search for Range else return -1;
 
 Searching for range:
