@@ -18,11 +18,12 @@ int Solution::search(const vector<int> &nums, int target) {
         int mid = (r - l)/2 + l;
         int comparator = nums[mid];
         
-        // Checking if both target and nums[mid] are on same side.
-        if((target < nums[0] && nums[mid] < nums[0]) || (target >= nums[0] && nums[mid] >= nums[0]))                //[< case ] means an 2 incr seq,  [ >= case ] 1 incr seq
-            comparator = nums[mid];
-        else
-        // Trying to figure out where nums[mid] is and making comparator as -INF or INF
+        // if: Checking if both target and nums[mid] are on same side.
+        // else: Trying to figure out where nums[mid] is and making comparator as -INF or INF
+
+        if((target < nums[0] && nums[mid] < nums[0]) || (target >= nums[0] && nums[mid] >= nums[0]))    // [< case ] means an 2 incr seq,  [ >= case ] 1 incr seq
+            comparator = nums[mid];                                                                     
+        else                                                                                            // rotation starts from [0]th element 
             comparator = target < nums[0] ? INT_MIN : INT_MAX;
         
         if(target == comparator) 
