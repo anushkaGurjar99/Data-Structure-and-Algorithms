@@ -19,7 +19,7 @@ int Solution::search(const vector<int> &nums, int target) {
         int comparator = nums[mid];
         
         // Checking if both target and nums[mid] are on same side.
-        if(target < nums[0] && nums[mid] < nums[0] || target >= nums[0] && nums[mid] >= nums[0])
+        if((target < nums[0] && nums[mid] < nums[0]) || (target >= nums[0] && nums[mid] >= nums[0]))
             comparator = nums[mid];
         else
         // Trying to figure out where nums[mid] is and making comparator as -INF or INF
