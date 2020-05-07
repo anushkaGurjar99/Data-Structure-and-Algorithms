@@ -23,19 +23,19 @@ public:
         int right = nums.size() - 1;
         int mid = 0;
         
-        while(left <= right && nums[left] == nums[right])        
+        while(left < right && nums[left] == nums[right])        
             right--;
         
-        while(left <= right){
+        while(left < right){
             mid = left + (right - left) / 2;
             
             if(nums[mid] > nums[right])
                 left = mid + 1;
             else
-                right = mid - 1;
+                right = mid;
         }
         
-        return min(nums[mid], nums[left]);
+        return nums[left];
     }
 };
 
