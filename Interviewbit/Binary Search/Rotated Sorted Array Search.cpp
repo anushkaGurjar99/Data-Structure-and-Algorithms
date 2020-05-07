@@ -12,9 +12,9 @@ using namespace std;
 int Solution::search(const vector<int> &nums, int target) {
 
     int l = 0;
-    int r = nums.size() - 1;
+    int r = nums.size();
         
-    while(l <= r){
+    while(l < r){
         int mid = (r - l)/2 + l;
         int comparator = nums[mid];
         
@@ -32,7 +32,7 @@ int Solution::search(const vector<int> &nums, int target) {
         if(target > comparator)            
             l = mid+1;            
         else
-            r = mid-1;
+            r = mid;
     }
     return -1;
 }
