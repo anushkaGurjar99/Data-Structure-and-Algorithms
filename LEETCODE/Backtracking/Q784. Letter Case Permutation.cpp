@@ -1,6 +1,6 @@
 /*
  * Author : Anushka Gurjar
- * Date   : MAY 2020
+ * Date   : May 2020
  * flags    : -std=c++14
 */
 
