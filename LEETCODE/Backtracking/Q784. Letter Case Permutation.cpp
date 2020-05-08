@@ -51,5 +51,7 @@ FLOW =>     amr
             aMr
             aMR
             amR
+            
+Toggle logic: 97(a) - 65(A) is equal to 32.
 */
 
