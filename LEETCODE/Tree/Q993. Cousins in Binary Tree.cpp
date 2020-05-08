@@ -20,6 +20,43 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/cousins-in-binary-tree/
 
+class Solution{
+public:
+    bool isCousins(TreeNode* root, int x, int y){        
+        
+        pair<TreeNode*, int> one;
+        if(!func(root, one, x, 0))      
+            return false;
+        
+        pair<TreeNode*, int> two;
+        if(!func(root, two, y, 0))
+            return false;
+        
+        return one.first != two.first && one.second == two.second;
+    }
+    
+    bool func(TreeNode* node, pair<TreeNode*, int>& p, int target, int curr){
+        if(!node)
+            return false;
+        
+        p = {node, curr};
+        
+        if(node->left && node->left->val == target)
+            return true;
+        if(node->right && node->right->val == target)
+            return true;
+        
+        return func(node->left, p, target, curr + 1) || func(node->right, p, target, curr + 1);
+    }
+};
+/*
+make a pair of {parentNode, heightOfTarget}
+get pair values and check them.
+
+Return false if target node is not found.
+*/
+
+// ***********************************************************************************************************************
 
 class Solution{
 public:
