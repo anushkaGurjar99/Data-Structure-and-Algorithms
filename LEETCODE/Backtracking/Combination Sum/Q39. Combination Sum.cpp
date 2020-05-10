@@ -36,6 +36,7 @@ public:
     }
 };
 
+
 /*
     Sort the array (prevent unnecessary calls)    
     
@@ -45,6 +46,8 @@ public:
         else 
             return from the call as their exist no more combinations
             
-    note: when making a new call, start from current index not from begin
+    note: when making a new call, start from current index not from begin (to avoide redundancy)
+    
+    ex: 2 3 5           target = 7
+        [2, 2, 3] and [2, 3, 2] is same
 */
-
