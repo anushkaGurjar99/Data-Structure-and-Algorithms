@@ -47,7 +47,7 @@ public:
 
     Solution:
         Once an element is used, skip all duplicates of it
-        While forming combination, Do not use same element more than one times
+        While forming combination, Do not use same CELL more than ones
     
     Rest is same as Combination sum
 */
