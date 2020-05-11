@@ -46,8 +46,10 @@ public:
     2                       0 1 0
     2 3                     1 1 0
     3                       1 0 0
-*/
 
+Time complexity: total is call stack of n + output of n2^n = O(n2^n). 
+If we don't include the output (eg if just asked to print in an interview) then just O(n) of course.
+*/
 
 // ***************************************************** Iterative *****************************************************
 
