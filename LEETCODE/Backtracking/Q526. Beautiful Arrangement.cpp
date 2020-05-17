@@ -43,6 +43,15 @@ Condition:
     either i is divisible by arr[i]
     or arr[i] is divisible by i
         
+        
+Observation:
+    We know that array has 1 to N elements as well as index (exclude 0)
+        So any index % nums[i] == 0 also satisfies i % nums[index] == 0
+        Ex:     0   1   2   3   4
+               [0] [1] [2] [3] [4]
+               
+               index = 2, i = 4
+               
 Approach:
     choose an index (initially 1st element)
     
