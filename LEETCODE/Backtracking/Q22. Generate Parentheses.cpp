@@ -9,6 +9,32 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/generate-parentheses/
 
+class Solution {
+public:
+    vector<string> generateParenthesis(int n){
+        vector<string> result;
+        backtrack(result, "", 0, 0, n);
+        return result;
+    }
+    
+    void backtrack(vector<string>& result, string curr, int leftBracket, int rightBracket, int limit){
+        if(leftBracket == limit && rightBracket == limit){
+            cout<<"\n"<<curr;
+            result.push_back(curr);
+            return;
+        }
+        
+        // keep track of validity
+        if(leftBracket < limit)
+            backtrack(result, curr + "(", leftBracket + 1, rightBracket, limit);
+        if(rightBracket < leftBracket)
+            backtrack(result, curr + ")", leftBracket, rightBracket + 1, limit);
+    }
+};
+
+
+// ***************************************************************************************************************************
+
 class Solution{
 public:
     vector<string> generateParenthesis(int n){
