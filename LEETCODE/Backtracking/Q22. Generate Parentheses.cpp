@@ -32,6 +32,21 @@ public:
     }
 };
 
+/*
+backtracking: 
+initially it creates this (let n = 3): "((()))"
+
+Then as follows - 
+It removes all ")" from back at the end of return stmt 
+And current string is left with remaining string - last char (as it was added while backtracking)
+Then it again calculate for valid sequence.
+
+                ( ( ( ) ) )           remaining: ( (
+                ( ( ) ( ) )                 rem: ( ( ) 
+                ( ( ) ) ( )                 rem: (                  (left brackes are not more than right ones so remove)
+                ( ) ( ( ) )                 rem: ( ) (
+                ( ) ( ) ( )                 rem: none
+*/
 
 // ***************************************************************************************************************************
 
