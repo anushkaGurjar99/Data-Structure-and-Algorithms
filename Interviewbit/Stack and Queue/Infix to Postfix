@@ -1,72 +1,77 @@
+/*
+ * Author : Anushka Gurjar
+ * Date   : April 2020
+ * flags    : -std=c++14
+*/
 
+#include<bits/stdc++.h>
+using namespace std;
 
-// Unable to process Parenthese, (suggestions will be appreciated)
+// Problem Statement: https://www.interviewbit.com/problems/infix-to-postfix/
 
-void getExpression(stack<string>& values, stack<string>& sign, bool flag){
-    
-    do{
-        string two = values.top();
-        values.pop();
-        string one = values.top();
-        values.pop();
-        string s = sign.top();
+void setOpeartorsPriority(unordered_map<char, short>& operatorPriority){
+    operatorPriority['+'] = 1;
+    operatorPriority['-'] = 1;
+    operatorPriority['*'] = 2;
+    operatorPriority['/'] = 2;
+    operatorPriority['^'] = 3;
+    operatorPriority['('] = 4;
+}
+
+void solveBracketEquation(stack<char>& sign, string& result){
+    while(sign.top() != '('){
+        result.push_back(sign.top());
         sign.pop();
-        
-        string result = one + two + s;
-        
-        if(values.empty()){
-            flag = false;
-        }
-        else if(values.top() == "("){
-            values.pop();
-            sign.pop();
-            flag = false;
-        }
-        
-        values.push(result);
-        
-    }while(flag);
+    }
+    sign.pop();
+}
+
+void solveHigherPriority(stack<char>& sign, string& result, unordered_map<char, short>& operatorPriority, char currSign){
+    
+    while(!sign.empty() && operatorPriority[currSign] <= operatorPriority[sign.top()] && sign.top() != '('){
+        result.push_back(sign.top());
+        sign.pop();
+    }
 }
 
 string Solution::solve(string A){
+    string result;
+    stack<char> sign;
+    unordered_map<char, short> operatorPriority;
+    setOpeartorsPriority(operatorPriority);
     
-    stack<string> sign;
-    stack<string> values;
-    unordered_map<string, int> priority;
-    
-    priority["("] = 5;
-    priority["^"] = 4;
-    priority["/"] = 3;
-    priority["*"] = 2;
-    priority["+"] = 1;
-    priority["-"] = 1;
-
-    for(int i = 0; i < A.size(); i++){
-        
-        string curr = string(1, A[i]);
-        
-        if(curr == "/" || curr == "^" || curr == "*" || curr == "+" || curr == "-"){
-            
-            if(!sign.empty() && priority[sign.top()] > priority[curr] ){
-                getExpression(values, sign, false); 
-            }
-            sign.push(curr);
-            
+    for(auto ch: A){
+        if(isalpha(ch)){
+            result.push_back(ch);
         }
-        else if(curr == "("){
-            values.push(curr);
-            sign.push(curr);
+        else if(ch == ')'){
+            solveBracketEquation(sign, result);
         }
-        else if(curr == ")"){
-            getExpression(values, sign, true);
+        else if(ch == '('){
+            sign.push(ch);
         }
         else{
-            values.push(curr);
+            if(!sign.empty() && operatorPriority[ch] <= operatorPriority[sign.top()] && sign.top() != '(')
+                solveHigherPriority(sign, result, operatorPriority, ch);
+            sign.push(ch);
         }
     }
     
-    getExpression(values, sign, true);          // process whole stack
+    while(!sign.empty()){
+        result.push_back(sign.top());
+        sign.pop();
+    }
     
-    return values.top();
+    return result;
 }
+
+/*
+    Store the incr order of Operator priority in Stack.
+    If an unorder operator comes, keep poping Operator from stack till stack empty or some greater operator than current in found.
+    
+    Case:
+    bracket - 
+        push open bracket into stack
+        when closing bracket is found, pop operators till open bracket is found.
+*/
 
