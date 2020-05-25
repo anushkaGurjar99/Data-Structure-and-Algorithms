@@ -83,3 +83,41 @@ Intution:
     
     Notice that, how left and up border is auto validating.
 */
+
+
+// *************************************************** DP Solution **********************************************************
+
+class Solution{
+public:
+    int countSquares(vector<vector<int>>& matrix){
+        int result = 0;
+        
+        // scan 1st col
+        for(int r = 0; r < matrix.size(); r++){
+            if(matrix[r][0] == 1)
+                result++;
+        }
+            
+        // scan 1st row (skip 1st cell as it was covere in 'scan col' loop)
+        for(int c = 1; c < matrix[0].size(); c++){
+            if(matrix[0][c] == 1)
+                result++;
+        }
+        
+        
+        for(int r = 1; r < matrix.size(); r++){
+            for(int c = 1; c < matrix[0].size(); c++){
+                if(matrix[r][c] == 1){
+                    matrix[r][c] += min(matrix[r - 1][c], min(matrix[r][c - 1], matrix[r - 1][c - 1]));
+                    result += matrix[r][c];
+                }
+            }    
+        }
+        
+        return result;
+    }
+};
+
+/*
+https://leetcode.com/problems/count-square-submatrices-with-all-ones/discuss/643429/Python-DP-Solution-%2B-Thinking-Process-Diagrams-(O(mn)-runtime-O(1)-space)
+*/
