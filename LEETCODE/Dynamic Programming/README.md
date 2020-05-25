@@ -2,7 +2,7 @@ Similar problems:
 
 ______________________________
 
-  Unique Paths
-  Decode Ways
-  Climbing Stairs
+  Unique Paths <br>
+  Decode Ways <br>
+  Climbing Stairs <br>
 ______________________________
