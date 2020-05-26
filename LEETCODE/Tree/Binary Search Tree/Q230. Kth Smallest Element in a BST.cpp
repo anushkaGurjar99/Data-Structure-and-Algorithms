@@ -19,6 +19,45 @@ using namespace std;
 */
 // Problem Statement: https://leetcode.com/problems/kth-smallest-element-in-a-bst
 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int kthSmallest(TreeNode* root, int& k){
+        if(!root)
+            return 0;
+        
+        int res = kthSmallest(root->left, k);
+        
+        k--;
+        if(k == 0)
+            return root->val;
+        
+        if(k > 0)
+            res = kthSmallest(root->right, k);
+        
+        return res;
+    }
+};
+
+/*
+changes in parameter: make the k reference variable
+
+We know that Inorder traversal of BST gives the sorted array so
+    - Check the Left Subtree
+    - Then check the right Subtree (is Kth element isn't found)
+*/
+
+
+// ****************************************************************************************************************************
+
 class Solution {
 public:
     int kthSmallest(TreeNode* root, int k){
