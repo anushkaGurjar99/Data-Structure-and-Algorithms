@@ -24,7 +24,6 @@ public:
         }
         
         vector<int> color(N + 1, 0); 
-        vector<bool> explored(N + 1, false); 
         queue<int> q;
         
         for(int i = 1; i <= N; ++i){
@@ -36,15 +35,14 @@ public:
                     int u = q.front();
                     q.pop();
                     
-                    if(explored[u])
-                        continue;
-                    explored[u] = true;
-                    
                     for(auto v: adj[u]){
                         if (color[v] == color[u])
                            return false;
-                        color[v] = (color[u] == 1) ? 2 : 1;
-                        q.push(v);
+                          
+                        if(color[v] == 0){                                      // if node is unvisited then only visit
+                            color[v] = (color[u] == 1) ? 2 : 1;
+                            q.push(v);
+                        }
                     }
                 }
             }
@@ -52,3 +50,5 @@ public:
         return true;
     }
 };
+
+// problem similar to two color patitioning
