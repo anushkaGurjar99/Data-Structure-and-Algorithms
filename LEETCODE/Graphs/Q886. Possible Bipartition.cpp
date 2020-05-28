@@ -15,6 +15,7 @@ public:
     bool possibleBipartition(int N, vector<vector<int>> &edges) {
         vector<vector<int>> adj(N + 1); 
         
+        // creating an undirected graph
         for(auto &edge: edges){
             int u = edge[0];
             int v = edge[1];
