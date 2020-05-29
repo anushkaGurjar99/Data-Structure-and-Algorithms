@@ -38,7 +38,7 @@ public:
 /*
 Each dp[i] represents longest possible subsequence including ith element.
 
-So for each ith element we check all its prev elements -
+So for each dp[i]th element we check all its prev elements -
   if no element is smaller than that we simply store 1
   else max of dp[j] + 1
 */
