@@ -28,8 +28,6 @@ int Solution::numDistinct(string A, string B){
 }
 
 /*
-an empty string is subsequence of all
-
 Example:   A:  "abbaab"
            B:  "abab"
            
