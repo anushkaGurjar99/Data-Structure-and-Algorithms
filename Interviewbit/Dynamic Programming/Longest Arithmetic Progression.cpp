@@ -19,28 +19,27 @@ int Solution::solve(const vector<int> &A){
     int result = 0;
     
     for(int i = 0; i < A.size() - 1; i++){
-        int diff = A[i] - A[i + 1];
-        int save = i;
+        int iDiff = A[i] - A[i + 1];
+        int jump = i;
 
         for(int j = i + 1; j < A.size(); j++){
-            int curr = A[i] - A[j];
+            int currDiff = A[i] - A[j];
             
-            if(curr == diff && save + 1 == j)
-                save++;
+            if(currDiff == iDiff && jump + 1 == j)
+                jump++;
                 
-            um.insert(curr);
-            us.insert(curr);
+            um.insert(currDiff);
+            us.insert(currDiff);
         }
         
-        i = save - 1;
+        i = jump - 1;
     }
     
-    for(auto itr: us)
-        result = result < um.count(itr) + 1 ? um.count(itr) + 1: result;
+    for(auto freq: us)
+        result = result < um.count(freq) + 1 ? um.count(freq) + 1: result;
         
     return result;
 }
-
 
 /*
     [9, 4, 7, 2, 10]
