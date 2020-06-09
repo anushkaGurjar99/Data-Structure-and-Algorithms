@@ -44,7 +44,7 @@ and at that instance you can increase the maximum index reachable accordingly.
 */
 
 // *********************************************************************************************************************************
-// TLE
+// TLE (DP)
 int Solution::jump(vector<int> &A){
     
     if(A.size() == 1)
@@ -71,3 +71,13 @@ int Solution::jump(vector<int> &A){
     
     return -1;
 }
+
+/*
+For each i:
+    Calculate the minimum Jumps
+    An unreachable position means that no further positions can be reached.     (return false)
+    
+How to calculate the Min jump for index ?
+Say our current jump = A[i], Start from i+1 to i+jump, 
+    we have to choose minimum form {jumps to reach i + i, jumps already made to reach that index}
+*/
