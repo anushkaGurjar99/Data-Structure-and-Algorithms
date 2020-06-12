@@ -19,7 +19,7 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/linked-list-cycle-ii/
 
-class Solution {
+class Solution{
 public:
     ListNode *detectCycle(ListNode *head){
         
@@ -28,30 +28,21 @@ public:
         
         ListNode* slow = head;
         ListNode* fast = head;
-        int hasCycle = false;
         
         while(fast && fast->next){
             slow = slow->next;
             fast = fast->next->next;
-            if(slow == fast){
-                hasCycle = true;
+            if(slow == fast)
                 break;
-            }
         }
         
-        ListNode* cycleStart = nullptr;
-        if(hasCycle){
-            ListNode* trav = head;
-            
-            while(trav != slow){
-                trav = trav->next;
-                slow = slow->next;
-            }
-            
-            cycleStart = trav;
+        ListNode* trav = head;
+        while(slow && slow != trav){
+            slow = slow->next;
+            trav = trav->next;
         }
         
-        return cycleStart;
+        return slow;
     }
 };
 
