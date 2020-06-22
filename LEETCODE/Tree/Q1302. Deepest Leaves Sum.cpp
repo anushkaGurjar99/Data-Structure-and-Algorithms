@@ -21,60 +21,66 @@ using namespace std;
 
 class Solution {
 public:
-    int deepestLeavesSum(TreeNode* root) {
-        int sum = 0;
-        int maxLevel = -1;
-        getDeepestLeavesSum(root, sum, maxLevel, 0);
-        return sum;
+    int deepestLeavesSum(TreeNode* root){
+        int result = 0;
+        int level = -1;
+        getDeepestLeavesSum(root, result, level, 0);
+        return result;
     }
-    void getDeepestLeavesSum(TreeNode* node, int& sum, int& maxLevel, int currLevel){
+    
+    void getDeepestLeavesSum(TreeNode* node, int& result, int& level, int current){
         if(!node)
             return;
-        currLevel++;
         
-        getDeepestLeavesSum(node->left, sum, maxLevel, currLevel);
-        getDeepestLeavesSum(node->right, sum, maxLevel, currLevel);
+        if(!node->left && !node->right){
+            if(level < current){
+                level = current;
+                result = node->val;
+            }
+            else if(level == current){
+                result += node->val;
+            }
+        }
         
-        if(currLevel > maxLevel){
-            sum = node->val;
-            maxLevel = currLevel;
-        }
-        else if(currLevel == maxLevel){
-            sum += node->val;
-        }
-        else{}
-    }
+        getDeepestLeavesSum(node->left, result, level, current + 1);
+        getDeepestLeavesSum(node->right, result, level, current + 1);  
+    }    
 };
+
+/*
+Maintaina a levelMarker that shows target level of leaf node
+    Whenever leaf node is detected :
+        ->  If it satisfy the current deepest level, we sum it into result
+        ->  If it does not, we update the levelMarker and result.
+*/
+
 
 
 // ***************************** Iterative Solution *****************************
 class Solution {
 public:
-    int deepestLeavesSum(TreeNode* root) {
-        int sum = 0;
+    int deepestLeavesSum(TreeNode* root){
         
-        queue<TreeNode*> nodes;
-        queue<TreeNode*> next;
-        nodes.push(root);
+        int result = 0;
+        queue<TreeNode*> q;
+        q.push(root);
         
-        while(!nodes.empty()){
-            TreeNode* temp = nodes.front();
-            nodes.pop();
-            sum += temp->val;
-            
-            if(temp->left){
-                next.push(temp->left);
-            }
-            if(temp->right){
-                next.push(temp->right);
-            }
-            
-            if(nodes.empty()){
-                swap(nodes,next);
-                sum = (nodes.empty()) ? sum : 0;
+        while(!q.empty()){
+            result = 0;
+            for(int i = q.size(); i > 0; i--){
+                TreeNode* currNode = q.front();
+                q.pop();
+                result += currNode->val;
+                
+                if(currNode->left)
+                    q.push(currNode->left);
+                if(currNode->right)
+                    q.push(currNode->right);
             }
         }
         
-        return sum;
+        return result;
     }
 };
+
+// Level Order Traversal
