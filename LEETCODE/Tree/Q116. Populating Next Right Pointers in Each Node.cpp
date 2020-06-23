@@ -46,22 +46,27 @@ public:
 };
 
 // ************************* Iterative Approach *************************
-class Solution {
+
+class Solution{
 public:
-    Node* connect(Node* root) {
-        Node *pre = root, *cur;
-        while (pre) {
-            cur = pre;
-            while (cur && cur -> left) { 
-                cur -> left -> next = cur -> right;
-                if (cur -> next) {
-                    cur -> right -> next = cur -> next -> left;
-                }
-                cur = cur -> next;
+    Node* connect(Node* root){
+        
+        Node* curr = root;
+        
+        while(curr){
+            Node* level = curr;
+            while(level && level->left){
+                level->left->next = level->right;
+                if(level->next)
+                    level->right->next = level->next->left;
+                
+                level = level->next;
             }
-            pre = pre -> left;
+            curr = curr->left;
         }
+        
         return root;
     }
 };
 
+// Level Order traversal (Keep completing one level in each iteration)
