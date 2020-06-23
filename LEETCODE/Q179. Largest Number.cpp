@@ -82,4 +82,9 @@ public:
 
 /*
 Note: For inbuild sort comparator you have to make structure object
+
+Once the array is sorted, the most "signficant" number will be at the front. 
+There is a minor edge case that comes up when the array consists of only zeroes, 
+so if the most significant number is 00, we can simply return 00. 
+Otherwise, we build a string out of the sorted array and return it.
 */
