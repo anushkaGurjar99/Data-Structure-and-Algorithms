@@ -57,4 +57,27 @@ Appraoch:
   Keep replacing last 0 with 1 to 9 digits recursivly
 */
 
+// ***************************************************** More Elegant *****************************************************
 
+class Solution{
+public:
+    vector<int> lexicalOrder(int n){
+        vector<int> res;
+        backtrack(1, n, res);
+        return res;
+    }
+    
+    void backtrack(int target, int n, vector<int>& res){
+        if(target > n)
+            return;
+        res.push_back(target);
+        backtrack(target * 10, n, res);
+        if(target % 10 != 9) 
+            backtrack(target+1, n, res);
+    }
+};
+
+/*
+Just repeatedly try from 1 to 9, 1 -> 10 -> 100 first, and then plus 1 to the deepest number. Take 13 as example:
+1 -> 10 -> (100) -> 11 -> (110) -> 12 -> (120) -> 13 -> (130) -> (14) -> 2 -> (20) ... -> 9 -> (90)
+*/ 
