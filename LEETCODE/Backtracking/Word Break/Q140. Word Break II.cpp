@@ -63,3 +63,17 @@ Preprocessing:
             store the combination into result
         3. Check for other combinations
 */
+
+
+// ************************************************************************************************************************************************************
+
+/*
+Method 2: unordered_map with BFS
+
+                            /       \
+                          cat       cats
+                           |         |
+                          and       sand
+                           |         |
+                          dog       dog
+*/
