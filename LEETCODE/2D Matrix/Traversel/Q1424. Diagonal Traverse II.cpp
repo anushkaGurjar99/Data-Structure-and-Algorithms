@@ -67,14 +67,10 @@ public:
             if(m[count].size() == 0)
                 break;
             
-            vector<int> temp = m[count];
-            reverse(temp.begin(), temp.end());
-            
-            for(auto itr: temp)
-                result.push_back(itr);
+            for(int i = m[count].size() - 1; i >= 0; i--)
+                result.push_back(m[count][i]);
         }
         
         return result;
     }
 };
-
