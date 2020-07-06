@@ -45,3 +45,36 @@ For each iteration,
     Then push the index for right neighbour cell (if exists)
 */
 
+
+
+// ********************************************************* Sum both Index ****************************************************************
+
+class Solution{
+public:
+    vector<int> findDiagonalOrder(vector<vector<int>>& nums){
+        
+        int maxLengthRow = 0;
+        unordered_map<int, vector<int>> m;
+        vector<int> result;
+        
+        for(int r = 0; r < nums.size(); r++){
+            for(int c = 0; c < nums[r].size(); c++)
+                m[r + c].push_back(nums[r][c]);
+        }
+        
+        
+        for(int count = 0; ; count++){
+            if(m[count].size() == 0)
+                break;
+            
+            vector<int> temp = m[count];
+            reverse(temp.begin(), temp.end());
+            
+            for(auto itr: temp)
+                result.push_back(itr);
+        }
+        
+        return result;
+    }
+};
+
