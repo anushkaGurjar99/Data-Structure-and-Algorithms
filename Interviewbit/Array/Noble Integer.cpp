@@ -14,6 +14,9 @@ int Solution::solve(vector<int> &A){
     sort(A.begin(), A.end());
     int size = A.size() - 1;
     
+    if(A[size] == 0)
+        return 1;
+    
     for(int i = 0; i < size; i++){
         if(A[i] == A[i + 1])
             continue;
@@ -22,9 +25,8 @@ int Solution::solve(vector<int> &A){
             return 1;
     }
     
-    return A[size] == 0 ? 1 : -1;
+    return -1;
 }
-
 /*
     Sort the array
     Check if there exist SIZE - CURRENT POS elements or not.
