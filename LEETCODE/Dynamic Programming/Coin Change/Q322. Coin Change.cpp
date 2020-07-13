@@ -96,3 +96,37 @@ At each Level we will add all valid coins in Top of Q (top + coin[i]) and push t
                    \  \     
                    9  11                                Level 3 (target found)
 */
+
+
+// ****************************************************** DP ******************************************************
+
+class Solution{
+public:
+    int coinChange(vector<int>& coins, int amount){
+        
+        if(amount == 0)
+            return 0;
+        
+        int MAX = amount + 1;
+        vector<vector<int>> dp(coins.size(), vector<int> (amount + 1, MAX));
+        
+        for(int i = 0; i < coins.size(); i++){
+            dp[i][0] = 0;
+            
+            for(int j = 1; j <= amount; j++){
+                
+                int pos = j - coins[i];
+                int upper = (i - 1 >= 0) ? dp[i - 1][j] : MAX;
+                
+                if(pos >= 0)
+                    dp[i][j] = min(upper, dp[i][pos] + 1);
+                else
+                    dp[i][j] = upper;
+            }
+        }
+        
+        int result = dp[coins.size() - 1][amount];
+        
+        return result == INT_MAX ? -1 : result;
+    }
+};
