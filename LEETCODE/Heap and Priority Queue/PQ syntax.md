@@ -7,7 +7,7 @@ Beside greater and less, we can create our custom comparator with function or cu
 	declare a class "same as named in 3rd parameter" and overload operator() for it
 		
 	
-## Custom sort comparator (for heap and inbuild sort())
+### Custom sort comparator (for heap and inbuild sort())
 	struct comparator{
         bool operator()(const string& one, const string& two){
             for(int i = 0; i < one.size() && i < two.size(); i++){
@@ -18,3 +18,4 @@ Beside greater and less, we can create our custom comparator with function or cu
         }
     }comp;
     
+for sort() you need to call comp but for PQ/heap you can directly call the struct
