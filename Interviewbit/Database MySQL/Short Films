@@ -1,0 +1,17 @@
+
+https://www.interviewbit.com/problems/short-films/
+
+SELECT  m.movie_title, 
+        m.movie_year, 
+        CONCAT(d.director_first_name, d.director_last_name) AS director_name,
+        CONCAT(a.actor_first_name, a.actor_last_name) AS actor_name,
+        mc.role
+        
+FROM    movies m, directors d, actors a, movies_cast mc, movies_directors md
+
+WHERE   m.movie_id      = mc.movie_id AND 
+        m.movie_id      = md.movie_id AND
+        a.actor_id      = mc.actor_id AND
+        d.director_id   = md.director_id AND
+        m.movie_time    = (SELECT MIN(movie_time) FROM movies)
+
