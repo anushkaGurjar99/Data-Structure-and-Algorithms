@@ -1,0 +1,12 @@
+
+https://www.interviewbit.com/problems/neutral-reviewers/
+
+
+SELECT      rv.reviewer_name
+
+FROM        reviewers rv, ratings rt
+
+WHERE       rv.reviewer_id = rt.reviewer_id AND
+            rt.reviewer_stars IS NULL
+            
+            
