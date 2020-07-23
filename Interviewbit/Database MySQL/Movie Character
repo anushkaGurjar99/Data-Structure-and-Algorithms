@@ -1,0 +1,14 @@
+
+https://www.interviewbit.com/problems/movie-character/
+
+
+SELECT      CONCAT(d.director_first_name, d.director_last_name) AS director_name, 
+            m.movie_title
+
+FROM        movies m, movies_cast mc, directors d, movies_directors md
+
+WHERE       m.movie_id = mc.movie_id AND
+            m.movie_id = md.movie_id AND
+            d.director_id = md.director_id AND
+            mc.role = 'SeanMaguire'
+            
