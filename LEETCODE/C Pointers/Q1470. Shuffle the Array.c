@@ -4,10 +4,6 @@
  * flags  : C
 */
 
-
-#include<bits/stdc++.h>
-using namespace std;
-
 // Problem Statement: https://leetcode.com/problems/shuffle-the-array/
 
 int* shuffle(int* nums, int numsSize, int n, int* returnSize){
