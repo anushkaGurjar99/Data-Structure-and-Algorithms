@@ -10,14 +10,9 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/shuffle-the-array/
 
-
-
-/**
- * Note: The returned array must be malloced, assume caller calls free().
- */
-
 int* shuffle(int* nums, int numsSize, int n, int* returnSize){
     
+    *returnSize = numsSize;
     int *result = (int*) malloc (numsSize * sizeof(int));
     
     int i = 0;
@@ -33,8 +28,6 @@ int* shuffle(int* nums, int numsSize, int n, int* returnSize){
         
         i++, j++;
     }
-    
-    *returnSize = numsSize;
     
     return result;
 }
