@@ -25,18 +25,18 @@ public:
         if(!root)
             return nullptr;
         
-        return bfs(root, limit, 0) ? nullptr: root;
+        return dfs(root, limit, 0) ? nullptr: root;
     }
     
-    bool bfs(TreeNode* node, int& limit, int sum){
+    bool dfs(TreeNode* node, int& limit, int sum){
         
         sum += node->val;
         
         if(!node->left && !node->right)
             return sum < limit ? true : false;
         
-        bool l = (node->left)  ? bfs(node->left, limit, sum)  : true;
-        bool r = (node->right) ? bfs(node->right, limit, sum) : true;
+        bool l = (node->left)  ? dfs(node->left, limit, sum)  : true;
+        bool r = (node->right) ? dfs(node->right, limit, sum) : true;
         
         if(l)
             node->left = nullptr;
