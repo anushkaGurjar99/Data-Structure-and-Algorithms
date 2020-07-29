@@ -76,3 +76,60 @@ area calculation:   we are storing incre order of elements in stack
 */
 
 
+// ******************************************************************************************************************************************************
+
+class Solution {
+public:
+    int maximalRectangle(vector<vector<char>>& grid){
+        int result = 0;
+        if(grid.size() < 1)
+            return result;
+        
+        vector<char> area (grid[0].size(), '0');
+        
+        for(int i = 0; i < grid.size(); i++){
+            updateArea(grid[i], area);
+            getMaxArea(area, result);
+        }
+        
+        return result;
+    }
+    
+    void updateArea(vector<char>& newArea, vector<char>& currArea){
+        for(int i = 0; i < newArea.size(); i++)
+            currArea[i] = (newArea[i] == '0') ? '0' : currArea[i] + 1;
+    }
+    
+    void getMaxArea(vector<char>& a, int& result){
+        
+        stack<int> s;
+        int top = -1;
+        int localArea = 0;
+        
+        for(int i = 0; i <= a.size(); i++){
+            while(!s.empty() && (i == a.size() || a[s.top()]  > a[i])){
+                top = s.top();
+                s.pop();
+                localArea = calculateLocalArea(s, top, a[top] - '0', i);
+                result = max(localArea, result);
+            }
+            if(i < a.size())
+                s.push(i);
+        }
+    }
+    
+    int calculateLocalArea(stack<int>& s, int topPos, int value, int i){
+        int left = (!s.empty()) ? (topPos - s.top()) : topPos + 1;
+        int right = i - topPos - 1;
+        return (left + right) * value;
+    }
+    
+};
+
+/*
+    calculate left area and right area for each point.
+    1 0 1 2 3 2 0 2 1
+*/
+
+
+
