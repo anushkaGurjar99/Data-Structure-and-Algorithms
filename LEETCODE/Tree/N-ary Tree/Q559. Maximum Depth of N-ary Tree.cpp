@@ -33,11 +33,11 @@ public:
             return 0;
             
         int result = 0;
-        bfs(root, result, 1);
+        dfs(root, result, 1);
         return result;
     }
     
-    void bfs(Node* node, int& result, int currDepth){
+    void dfs(Node* node, int& result, int currDepth){
         
         result = max(result, currDepth);
         
@@ -45,6 +45,6 @@ public:
             return;
         
         for(auto itr: node->children)
-            bfs(itr, result, currDepth + 1);
+            dfs(itr, result, currDepth + 1);
     }
 };
