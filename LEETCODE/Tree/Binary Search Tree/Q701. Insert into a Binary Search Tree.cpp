@@ -22,30 +22,35 @@ using namespace std;
 
 class Solution {
 public:
-    TreeNode* insertIntoBST(TreeNode* root, int val) {
-        if(!root){
-            TreeNode* newNode = new TreeNode(val);
-            return newNode;
-        }
+    TreeNode* insertIntoBST(TreeNode* root, int val){
+class Solution{
+public:
+    TreeNode* insertIntoBST(TreeNode* root, int val){
+        if(!root)
+            return new TreeNode(val);
         
-        if(val < root->val){
-            TreeNode* res = insertIntoBST(root->left, val);
-            if(res->val == val){
-                root->left = res;
-                return root;
-            }
-        }
-        else{
-            TreeNode* res = insertIntoBST(root->right, val);
-            if(res->val == val){
-                root->right = res;
-                return root;
-            }
-        }
+        if(val < root->val)
+            root->left = insertIntoBST(root->left, val);
+        else
+            root->right = insertIntoBST(root->right, val);
+            
         return root;
     }
 };
 
+/*
+           4
+       2        7
+     1   3    5    8
+                6
+           
+    (insert 6)
+    
+    Approach:
+        we know that new node will be inserted at leaf of some node.
+        so find a node which is suitable for new node using BST property.
+        as soon as we find leaf node we return a newNode(val).
+*/
 /*
 if val < root
     traverse left subtree (if null found, insert the node)
