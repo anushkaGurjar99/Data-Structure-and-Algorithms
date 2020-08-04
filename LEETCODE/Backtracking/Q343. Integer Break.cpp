@@ -48,3 +48,35 @@ Solution 1: Backtracking
 */
 
 
+// **************************************************************** Approach 2 ******************************************************************************
+class Solution{
+public:
+    int integerBreak(int n){
+        
+        if(n <= 3)
+            return (n - 1);
+        
+        int result = 0;
+        dfs(n, 1, result, 1, 0);
+        return result;
+        
+    }
+    
+    void dfs(int num, int product, int& result, int start, int count){
+        if(num == 0){
+            result = max(result, product);
+            return;
+        }
+        
+        for(int i = start; num - i >= 0; i++)
+            dfs(num - i, product * i, result, i, count + 1);
+    }
+};
+
+/*
+    Just to make sure we check two elements at least ->
+        we check the edge case
+        
+    Then we divide a number till it gets 0 and try all combinations because we know number > 3 must have
+    a combination which is greater than or equals to given input n;
+*/
