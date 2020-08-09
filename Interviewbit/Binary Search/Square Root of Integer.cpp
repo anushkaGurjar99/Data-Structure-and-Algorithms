@@ -11,6 +11,32 @@ using namespace std;
 
 int Solution::sqrt(int A){
     
+    if(A <= 1)
+        return A;
+    
+    long left = 0;
+    long right = A;
+    long mid = 0;
+        
+    while(left <= right){
+        mid = left + (right - left) / 2;
+        
+        if(mid * mid == A)
+            return mid;
+        
+        if(mid * mid < A)
+            left = mid + 1;
+        else
+            right = mid - 1;    
+    }
+    
+    return left - 1;
+}
+
+// ***************************************************************************************************************************************************
+
+int Solution::sqrt(int A){
+    
     long left = 0;
     long right = A;
     long mid = 0;
