@@ -44,4 +44,33 @@ public:
         does it contain exact 'limit' numbers
 */
 
+// ****************************************************************** Clean Code ******************************************************************
+
+class Solution{
+public:
+    vector<vector<int>> combinationSum3(int k, int n){
+        vector<vector<int>> result;
+        dfs(k, result, {}, n, 1);
+        return result;
+    }
+    
+    void dfs(int& len, vector<vector<int>>& result, vector<int> c, int target, int pos){
+        if(c.size() == len && target == 0){
+            result.push_back(c);
+            return;
+        }  
+        
+        if(c.size() > len)
+            return;
+        
+        for(int i = pos; i <= 9; i++){
+            if(target - i >= 0){
+                c.push_back(i);
+                dfs(len, result, c, target - i, i + 1);
+                c.pop_back();
+            }
+            // else break;  // yeah..
+        }
+    }
+};
 
