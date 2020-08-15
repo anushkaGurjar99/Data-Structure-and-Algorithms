@@ -4,7 +4,6 @@
  * flags  : -std=c++14
 */
 
-
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -19,6 +18,77 @@ using namespace std;
 */
 
 // Problem Statement: https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+
+class Codec{
+public:
+
+    string serialize(TreeNode* root){
+        if(!root)
+            return "#";
+        
+        return to_string(root->val) + " " + serialize(root->left) + " " + serialize(root->right);
+    }
+
+    TreeNode* deserialize(string data){
+        vector<string> nodes;
+        getNodes(data, nodes);
+        int i = 0;
+        return helper(nodes, i);
+    }
+    
+    void getNodes(string& data, vector<string>& nodes){
+        string curr;
+        for(int i = 0; i < data.size(); i++){
+            if(data[i] == ' '){
+                nodes.push_back(curr);
+                curr = "";
+                continue;
+            }
+            
+            if(data[i] == '#'){
+                if(curr != "")
+                    nodes.push_back(curr);
+                curr = "";
+                i++;
+                nodes.push_back("#");
+            }
+            else{
+                curr.push_back(data[i]);
+            }
+        }
+    }
+    
+    TreeNode* helper(vector<string>& nodes, int& pos){
+        if(nodes[pos] == "#")
+            return nullptr;
+        
+        if(pos == nodes.size())
+            return nullptr;
+        
+        int n = atoi(nodes[pos].c_str());
+        TreeNode* newNode = new TreeNode(n);
+        
+        pos++;
+        newNode->left = helper(nodes, pos);
+        
+        pos++;
+        newNode->right = helper(nodes, pos);
+        
+        return newNode;
+    }
+};
+
+/*
+    (convert tree nodes into string array)
+    serialize using DFS
+        put # for empty nodes.
+        
+    (convert string into array of nodes)
+    deserialize using DFS
+        put null at the place of #.
+*/
+
+// ************************************************************************************************************************************************************
 
 class Codec{
 public:
