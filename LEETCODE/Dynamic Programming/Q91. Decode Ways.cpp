@@ -67,3 +67,63 @@ Intution:
 
 * :- if prev to prev does not exist, consider 1
 */
+
+
+// ***********************************************************************************************************************************************************
+
+class Solution{
+public:
+    int numDecodings(string s){
+        
+        int size = s.size();
+        
+        if(size < 1 || s[0] == '0')
+            return 0;
+        
+        int zeroCount = 0;
+        vector<int> dp(size + 1, 1);
+        dp[0] = dp[1] = 1;
+        
+        for(int i = 1; i < size; i++){
+            
+            if(s[i] == '0'){
+                if(s[i - 1] > '2')
+                    return false;
+                
+                zeroCount++;
+                dp[i + 1] = dp[i - 1];
+            }
+            else if((s[i - 1] == '1' && s[i] <= '9') || (s[i - 1] == '2' && s[i] <= '6')){
+                dp[i + 1] = dp[i] + dp[i - 1];
+                zeroCount = 0;
+            }
+            else{
+                dp[i + 1] = dp[i];
+                zeroCount = 0;
+            }
+            
+            if(zeroCount == 2)
+                return 0;
+        }
+        
+        return dp[size];
+    }
+};
+
+/*
+
+    1.   1   2   1   1   2  num
+    1.   1   2   3   5   8  res
+    
+    
+cases:
+    if two cont. 0                                          EX.(100)
+        return 0
+    if digit is 0
+        if prev digit was greater than 2, return false.     EX.(1030)
+        copy dp[i - 1]
+    if digit is compatible with prev d                      EX.(12)
+        sum dp[i - 1] + dp[i - 2]
+    if digit is not compatible with prev d                  EX.(55)
+        copy dp[i - 1]
+*/
