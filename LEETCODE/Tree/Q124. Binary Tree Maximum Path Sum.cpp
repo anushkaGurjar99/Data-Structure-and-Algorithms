@@ -20,28 +20,32 @@ using namespace std;
 
 // Problem Statement: https://leetcode.com/problems/binary-tree-maximum-path-sum/
 
-class Solution {
+class Solution{
 public:
     int maxPathSum(TreeNode* root){
-        int maxSum = INT_MIN;
-        getMaxPathSum(root, maxSum);
-        return maxSum;
+        int result = INT_MIN;
+        helper(root, result);
+        return result;
     }
-    int getMaxPathSum(TreeNode* node, int& maxSum){
+    
+    int helper(TreeNode* node, int& result){
         if(!node)
             return 0;
         
-        int left = node->val + getMaxPathSum(node->left, maxSum);
-        int right = node->val + getMaxPathSum(node->right, maxSum);
+        int l = node->val + helper(node->left, result);
+        int r = node->val + helper(node->right, result);
         
-         /* 4 cases to get maxSum 
-        node + l + r, node + l, node + r, node */
-        maxSum = ((left + right - node->val) > maxSum) ? (left + right - node->val) : maxSum;
-        maxSum = (left > maxSum) ? left : maxSum;
-        maxSum = (right > maxSum) ? right : maxSum;
-        maxSum = (node->val > maxSum) ? node->val : maxSum;
+        result = max(result, node->val);
+        result = max(result, l);
+        result = max(result, r);
+        result = max(result, l + r - node->val);
         
-        return max(node->val, max(left, right));
+        return max(l, max(r, node->val));
     }
 };
 
+/*  
+    4 cases to get maxSum 
+    node + l + r, node + l, node + r, node, some-prev-max
+*/
+        
