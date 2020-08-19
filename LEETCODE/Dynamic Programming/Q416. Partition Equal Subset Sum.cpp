@@ -66,3 +66,58 @@ Transition function:
     
 ref: tushar roy
 */
+
+// ********************************************************* Backtracking Appraoch ********************************************************************
+
+class Solution{
+public:
+    bool canPartition(vector<int>& nums){
+        
+        int maxElement = INT_MIN;
+        int sum = 0;
+        
+        for(auto num: nums){
+            maxElement = max(maxElement, num);
+            sum += num;
+        }
+        
+        int half = sum / 2;
+        
+        if(maxElement > half || sum % 2 != 0)
+            return false;
+        if(maxElement == half)
+            return true;
+        
+        sort(nums.begin(), nums.end(), greater<int>());
+        
+        return backtrack(nums, half, 0);
+    }
+    
+    bool backtrack(vector<int>& nums, int currSum, int pos){
+        if(currSum == 0)
+            return true;
+        
+        if(pos == nums.size())
+            return false;
+        
+        for(int i = pos; i < nums.size(); i++){
+            if(currSum - nums[i] >= 0){
+                if(backtrack(nums, currSum - nums[i], i + 1))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+};
+
+/*
+    case1:  Max element is > sumOfAllElements / 2
+            partition is not possible in this case
+            
+    case2:  Max element is same as target (target is half sum of array)
+            
+else: backtracking  
+    each time we add an element into currSum and call the function recursively
+    check if the currSum is same as Sum of half partition
+*/
