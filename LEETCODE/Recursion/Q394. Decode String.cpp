@@ -47,4 +47,42 @@ Every time we meet a '[', we treat it as a subP so call our recursive function t
 Every time we meet a ']', we know a subP finished and just return the 'word' we got in this subP.
 
 Notice that the 'pos' is passed by reference, use it to record the position of the original string.
-*/
+
+
+
+// **********************************************************************************************************************************************************************
+
+class Solution{
+public:
+    string decodeString(string s){
+        int p = 0;
+        return helper(s, p);
+    }
+    
+    string helper(string str, int& i){
+        string result = "";
+        
+        while(i < str.size()){
+            int count = 0;
+            while(isdigit(str[i])){
+                count *= 10;
+                count += str[i] - '0';
+                i++;
+            }
+            
+            if(str[i] == '['){
+                string temp = helper(str, ++i);
+                while(count--)
+                    result += temp;
+            }
+            else if(str[i] == ']'){
+                i++;
+                return result;
+            }
+            else
+                result.push_back(str[i++]);
+        }
+        
+        return result;
+    }
+};
