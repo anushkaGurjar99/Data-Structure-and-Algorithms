@@ -47,8 +47,7 @@ Every time we meet a '[', we treat it as a subP so call our recursive function t
 Every time we meet a ']', we know a subP finished and just return the 'word' we got in this subP.
 
 Notice that the 'pos' is passed by reference, use it to record the position of the original string.
-
-
+*/
 
 // **********************************************************************************************************************************************************************
 
