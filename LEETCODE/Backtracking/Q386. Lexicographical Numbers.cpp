@@ -81,3 +81,37 @@ public:
 Just repeatedly try from 1 to 9, 1 -> 10 -> 100 first, and then plus 1 to the deepest number. Take 13 as example:
 1 -> 10 -> (100) -> 11 -> (110) -> 12 -> (120) -> 13 -> (130) -> (14) -> 2 -> (20) ... -> 9 -> (90)
 */ 
+
+// **********************************************************************************************************************************************
+
+class Solution{
+public:
+    vector<int> lexicalOrder(int n){
+        vector<int> res;
+        dfs(n, res, 1);    
+        return res;
+    }
+    
+    void dfs(int& limit, vector<int>& res, int num){
+        if(num > limit)
+            return;
+        
+        res.push_back(num);
+        dfs(limit, res, num * 10);
+        
+        if(num % 10 < 9)
+            dfs(limit, res, num + 1);
+    }
+};
+
+/*
+A1: External Sort (NlogN)
+A2: Backtracking (N) 
+        1
+        10
+        11
+        12
+        13
+        ...
+        
+*/
