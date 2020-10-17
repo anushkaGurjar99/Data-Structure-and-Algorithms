@@ -43,3 +43,38 @@ public:
         return max(l, r);      
     }
 };
+
+// ********************************************************************************************************************************************************************
+
+class Solution{
+public:
+    int longestUnivaluePath(TreeNode* root){
+        int res = 0;
+        helper(root, res);
+        return res;
+    }
+    
+    void helper(TreeNode* node, int& res){
+        if(!node)
+            return;
+        
+        int p = longest(node->left, node->val) + longest(node->right, node->val) + 1;
+        res = max(p - 1, res);
+        
+        helper(node->left, res);
+        helper(node->right, res);
+    }
+    
+    int longest(TreeNode* node, int& val){
+        if(!node)
+            return 0;
+        
+        if(node->val != val)
+            return 0;
+        
+        int l = longest(node->left, val);
+        int r = longest(node->right, val);
+        
+        return max(l, r) + 1;
+    }
+};
