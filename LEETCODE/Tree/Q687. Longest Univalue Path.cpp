@@ -19,30 +19,30 @@ using namespace std;
  */
 // Problem Statement: https://leetcode.com/problems/longest-univalue-path
  
-class Solution {
+
+class Solution{
 public:
-    int longestUnivaluePath(TreeNode* root) {
-        if(!root) 
-            return 0;
-        int longestPath = 0;
-        checkPath(root, longestPath);
-        return longestPath;
+    int longestUnivaluePath(TreeNode* root){
+        int res = 0;
+        helper(root, res);
+        return res;
     }
-    int checkPath(TreeNode* node, int& num){
+    
+    int helper(TreeNode* node, int& res){
+        if(!node)
+            return 0;
         
-        int l = node->left ? checkPath(node->left, num) : 0;
+        int l = helper(node->left, res);
+        int r = helper(node->right, res);
         
-        int r = node->right ? checkPath(node->right, num) : 0;
+        l = (node->left && node->left->val == node->val) ? l + 1 : 0;
+        r = (node->right && node->right->val == node->val) ? r + 1 : 0;
         
-        l = (node->left && node->left->val == node->val) ? l+1 : 0;
-        
-        r = (node->right && node->right->val == node->val) ? r+1 : 0;
-        
-        num = max(num, l+r);
-        
-        return max(l, r);      
+        res = max(res, l + r);
+        return max(l, r);
     }
 };
+
 
 // ********************************************************************************************************************************************************************
 
