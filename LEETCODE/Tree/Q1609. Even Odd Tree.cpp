@@ -1,9 +1,8 @@
 /*
  * Author : Anushka Gurjar
- * Date   : February 2020
- * flags    : -std=c++14
+ * Date   : October 2020
+ * flags  : -std=c++17
 */
-
 
 #include<bits/stdc++.h>
 using namespace std;
